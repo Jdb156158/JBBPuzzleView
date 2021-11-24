@@ -1,0 +1,29 @@
+PODS:
+  - Masonry (1.1.0)
+  - SVProgressHUD (2.2.5)
+  - YYImage (1.0.4):
+    - YYImage/Core (= 1.0.4)
+  - YYImage/Core (1.0.4)
+  - YYImage/WebP (1.0.4):
+    - YYImage/Core
+
+DEPENDENCIES:
+  - Masonry
+  - SVProgressHUD
+  - YYImage
+  - YYImage/WebP
+
+SPEC REPOS:
+  trunk:
+    - Masonry
+    - SVProgressHUD
+    - YYImage
+
+SPEC CHECKSUMS:
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
+
+PODFILE CHECKSUM: 210cd68f4f57ec7591f09ae8d4fa64f3b2e9ceed
+
+COCOAPODS: 1.11.2
