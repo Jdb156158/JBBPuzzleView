@@ -19,6 +19,8 @@
 		291DF2ED274E200E0082B6DC /* PickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 291DF2EB274E200E0082B6DC /* PickerCell.xib */; };
 		291DF2F0274E2C520082B6DC /* NSData+GifMaking.m in Sources */ = {isa = PBXBuildFile; fileRef = 291DF2EE274E2C520082B6DC /* NSData+GifMaking.m */; };
 		291DF2F2274E2F610082B6DC /* Comp_1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 291DF2F1274E2F610082B6DC /* Comp_1.gif */; };
+		29357A6E274E4DAD00BD986D /* TceEditImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29357A6D274E4DAD00BD986D /* TceEditImageView.m */; };
+		29357A71274E5A0B00BD986D /* UIViewController+GifMakingUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 29357A6F274E5A0B00BD986D /* UIViewController+GifMakingUtils.m */; };
 		29B397F7274B95C700C6FAC7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B397F6274B95C700C6FAC7 /* AppDelegate.m */; };
 		29B397FD274B95C700C6FAC7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B397FC274B95C700C6FAC7 /* ViewController.m */; };
 		29B39800274B95C700C6FAC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29B397FE274B95C700C6FAC7 /* Main.storyboard */; };
@@ -29,7 +31,6 @@
 		29B39812274B9A2400C6FAC7 /* JBBPuzzleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29B39810274B9A2400C6FAC7 /* JBBPuzzleViewController.xib */; };
 		29B39816274B9CCE00C6FAC7 /* UIView+GifMakingUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B39815274B9CCE00C6FAC7 /* UIView+GifMakingUtils.m */; };
 		29B3981A274BA71400C6FAC7 /* TcePuzzleViewFrameAndPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B39818274BA71400C6FAC7 /* TcePuzzleViewFrameAndPoint.m */; };
-		29B3981D274BA75B00C6FAC7 /* TcePuzzlePuzzleEditScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3981C274BA75B00C6FAC7 /* TcePuzzlePuzzleEditScrollView.m */; };
 		29B39833274BB23400C6FAC7 /* TCESingle.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B39832274BB23400C6FAC7 /* TCESingle.m */; };
 		29B39836274C832000C6FAC7 /* TcePuzzlePuzzleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B39835274C832000C6FAC7 /* TcePuzzlePuzzleView.m */; };
 		29B3983A274C935C00C6FAC7 /* PuzzleStyleViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B39838274C935C00C6FAC7 /* PuzzleStyleViewCell.m */; };
@@ -60,6 +61,10 @@
 		291DF2EE274E2C520082B6DC /* NSData+GifMaking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+GifMaking.m"; sourceTree = "<group>"; };
 		291DF2EF274E2C520082B6DC /* NSData+GifMaking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GifMaking.h"; sourceTree = "<group>"; };
 		291DF2F1274E2F610082B6DC /* Comp_1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Comp_1.gif; sourceTree = "<group>"; };
+		29357A6C274E4DAD00BD986D /* TceEditImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TceEditImageView.h; sourceTree = "<group>"; };
+		29357A6D274E4DAD00BD986D /* TceEditImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TceEditImageView.m; sourceTree = "<group>"; };
+		29357A6F274E5A0B00BD986D /* UIViewController+GifMakingUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+GifMakingUtils.m"; sourceTree = "<group>"; };
+		29357A70274E5A0B00BD986D /* UIViewController+GifMakingUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+GifMakingUtils.h"; sourceTree = "<group>"; };
 		29B397F2274B95C700C6FAC7 /* JBBPuzzleView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBBPuzzleView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B397F5274B95C700C6FAC7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		29B397F6274B95C700C6FAC7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -77,8 +82,6 @@
 		29B39815274B9CCE00C6FAC7 /* UIView+GifMakingUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GifMakingUtils.m"; sourceTree = "<group>"; };
 		29B39818274BA71400C6FAC7 /* TcePuzzleViewFrameAndPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TcePuzzleViewFrameAndPoint.m; sourceTree = "<group>"; };
 		29B39819274BA71400C6FAC7 /* TcePuzzleViewFrameAndPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TcePuzzleViewFrameAndPoint.h; sourceTree = "<group>"; };
-		29B3981B274BA75B00C6FAC7 /* TcePuzzlePuzzleEditScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TcePuzzlePuzzleEditScrollView.h; sourceTree = "<group>"; };
-		29B3981C274BA75B00C6FAC7 /* TcePuzzlePuzzleEditScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TcePuzzlePuzzleEditScrollView.m; sourceTree = "<group>"; };
 		29B3981E274BA78B00C6FAC7 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		29B39831274BB23400C6FAC7 /* TCESingle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCESingle.h; sourceTree = "<group>"; };
 		29B39832274BB23400C6FAC7 /* TCESingle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCESingle.m; sourceTree = "<group>"; };
@@ -186,6 +189,8 @@
 				291DF2A9274CC1510082B6DC /* UIColor+GifMakingUtils.m */,
 				29B39814274B9CCE00C6FAC7 /* UIView+GifMakingUtils.h */,
 				29B39815274B9CCE00C6FAC7 /* UIView+GifMakingUtils.m */,
+				29357A70274E5A0B00BD986D /* UIViewController+GifMakingUtils.h */,
+				29357A6F274E5A0B00BD986D /* UIViewController+GifMakingUtils.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -195,10 +200,10 @@
 			children = (
 				29B39831274BB23400C6FAC7 /* TCESingle.h */,
 				29B39832274BB23400C6FAC7 /* TCESingle.m */,
+				29357A6C274E4DAD00BD986D /* TceEditImageView.h */,
+				29357A6D274E4DAD00BD986D /* TceEditImageView.m */,
 				29B39834274C832000C6FAC7 /* TcePuzzlePuzzleView.h */,
 				29B39835274C832000C6FAC7 /* TcePuzzlePuzzleView.m */,
-				29B3981B274BA75B00C6FAC7 /* TcePuzzlePuzzleEditScrollView.h */,
-				29B3981C274BA75B00C6FAC7 /* TcePuzzlePuzzleEditScrollView.m */,
 				29B39819274BA71400C6FAC7 /* TcePuzzleViewFrameAndPoint.h */,
 				29B39818274BA71400C6FAC7 /* TcePuzzleViewFrameAndPoint.m */,
 			);
@@ -356,11 +361,12 @@
 				29B39833274BB23400C6FAC7 /* TCESingle.m in Sources */,
 				291DF2F0274E2C520082B6DC /* NSData+GifMaking.m in Sources */,
 				291DF2E0274DE5BD0082B6DC /* UILabel+HXExtension.m in Sources */,
+				29357A6E274E4DAD00BD986D /* TceEditImageView.m in Sources */,
 				29B39808274B95D600C6FAC7 /* main.m in Sources */,
 				291DF2D2274DE3610082B6DC /* UIView+HXExtension.m in Sources */,
-				29B3981D274BA75B00C6FAC7 /* TcePuzzlePuzzleEditScrollView.m in Sources */,
 				29B39836274C832000C6FAC7 /* TcePuzzlePuzzleView.m in Sources */,
 				291DF2B5274DDE600082B6DC /* CustomAlbumController.m in Sources */,
+				29357A71274E5A0B00BD986D /* UIViewController+GifMakingUtils.m in Sources */,
 				29B39811274B9A2400C6FAC7 /* JBBPuzzleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,6 +517,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JBBPuzzleView/PrefixHeader.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JBBPuzzleView/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "GIF拼图";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "开启相册权限，您将可以保存图片到本地并使用本地图片制作并生成Gif";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "这样做会让 GIF制作 有权限访问您的相册应用中的全部照片和视频，从而让您能够制作GIF或视频。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -543,6 +550,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JBBPuzzleView/PrefixHeader.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JBBPuzzleView/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "GIF拼图";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "开启相册权限，您将可以保存图片到本地并使用本地图片制作并生成Gif";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "这样做会让 GIF制作 有权限访问您的相册应用中的全部照片和视频，从而让您能够制作GIF或视频。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

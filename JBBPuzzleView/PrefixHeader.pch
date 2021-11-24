@@ -13,6 +13,7 @@
 #import <Masonry/Masonry.h>
 #import <YYImage/YYImage.h>
 #import "UIColor+GifMakingUtils.h"
+#import "UIViewController+GifMakingUtils.h"
 
 #import "UIView+HXExtension.h"
 #import "UILabel+HXExtension.h"

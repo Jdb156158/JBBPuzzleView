@@ -22,7 +22,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *Scale16bi9Btn;
 @property (weak, nonatomic) IBOutlet UIButton *Scale9bi16Btn;
 @property (nonatomic, strong) TcePuzzlePuzzleView *tcePuzzleView;
-@property (nonatomic, strong) NSMutableArray *tceImages;
 @property (nonatomic, strong) NSMutableArray *modelCountImages;
 @property (nonatomic, strong) NSMutableArray *colorsArray;
 
@@ -34,15 +33,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.tceImages = [[NSMutableArray alloc] init];
-    
-    for (int i= 0; i<10; i++) {
-        UIImage *image = [UIImage imageNamed:@"IMG4"];
-        NSData *data = [NSData rawDataImage:image];
-        NSDictionary *dict = @{@"type":@"0",@"data":data};
-        [self.tceImages addObject:dict];
-    }
     
     self.modelCountImages = [[NSMutableArray alloc] initWithArray:@[
         @{@"default":@"style_2_3",@"selectimage":@"Select_style_2_3"},
@@ -65,9 +55,6 @@
     [self initPuzzleSytleCollectionView];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        // 重载界面
-        self.tcePuzzleView.TcePuzzleAssetArray = self.tceImages;
-        
         //默认选中第一行
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self.myModelCountCollectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
@@ -112,8 +99,7 @@
     if (!_tcePuzzleView){
         _tcePuzzleView = [[TcePuzzlePuzzleView alloc] initWithFrame:CGRectMake(0, 0, self.canvasBgView.frame.size.width, self.canvasBgView.frame.size.height)];
         _tcePuzzleView.backgroundColor = [UIColor whiteColor];
-        _tcePuzzleView.TcePuzzleAssetArray = self.tceImages;
-        _tcePuzzleView.tceImage = [UIImage imageNamed:@"编辑水印1"];
+        //_tcePuzzleView.TcePuzzleAssetArray = self.tceImages;
         _tcePuzzleView.grpValue = 5;
         [self.canvasBgView addSubview:_tcePuzzleView];
     }
