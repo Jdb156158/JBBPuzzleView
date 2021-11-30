@@ -411,6 +411,8 @@
     if (self.didSelextAssetfinsh) {
         self.didSelextAssetfinsh(asset);
     }
+    
+    [self clickCloseBtn:nil];
 }
 
 

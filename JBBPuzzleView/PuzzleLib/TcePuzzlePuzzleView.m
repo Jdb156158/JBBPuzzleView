@@ -15,22 +15,29 @@
 
 #import "CustomAlbumController.h"
 
-@interface TcePuzzlePuzzleView()<TceEditImageViewDelegate>
+
+
+@interface TcePuzzlePuzzleView()<TceEditImageViewDelegate,DXLINVManageDelegate>
 {
     BOOL contain;
     CGPoint startPoint;
     CGPoint originPoint;
 }
-@property (nonatomic, strong) TceEditImageView *TcePuzzleFirstView;
-@property (nonatomic, strong) TceEditImageView *TcePuzzleSecondView;
-@property (nonatomic, strong) TceEditImageView *TcePuzzleThirdView;
-@property (nonatomic, strong) TceEditImageView *TcePuzzleFourthView;
-@property (nonatomic, strong) TceEditImageView *TcePuzzleFiveView;
-@property (nonatomic, strong) TceEditImageView *TcePuzzleSixView;
-@property (nonatomic, strong) TceEditImageView *TcePuzzleSevenView;
-@property (nonatomic, strong) TceEditImageView *TcePuzzleEightView;
-@property (nonatomic, strong) TceEditImageView *TcePuzzleNineView;
-@property (nonatomic, strong) TceEditImageView *TcePuzzleTempView;
+
+//所有的视图
+@property (nonatomic, strong) DXLINVView *TcePuzzleFirstView;
+@property (nonatomic, strong) DXLINVView *TcePuzzleSecondView;
+@property (nonatomic, strong) DXLINVView *TcePuzzleThirdView;
+@property (nonatomic, strong) DXLINVView *TcePuzzleFourthView;
+@property (nonatomic, strong) DXLINVView *TcePuzzleFiveView;
+@property (nonatomic, strong) DXLINVView *TcePuzzleSixView;
+@property (nonatomic, strong) DXLINVView *TcePuzzleSevenView;
+@property (nonatomic, strong) DXLINVView *TcePuzzleEightView;
+@property (nonatomic, strong) DXLINVView *TcePuzzleNineView;
+@property (nonatomic, strong) DXLINVView *TcePuzzleTempView;
+
+//当前选中的DXLINVManage的tag
+@property(nonatomic, assign) NSInteger cutterDxlinviewTag;
 
 @property (nonatomic, strong) NSArray *points;
 
@@ -42,6 +49,7 @@
 {
     if (self = [super initWithFrame:frame])
     {
+        self.cutterDxlinviewTag = -1;
         [self TcePuzzleInitPuzzleView];
     }
     return self;
@@ -50,20 +58,15 @@
 - (void)TcePuzzleInitPuzzleView
 {
     
-//    [_borderView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.right.equalTo(self);
-//        make.width.mas_equalTo(70);
-//        make.height.mas_equalTo(60);
-//    }];
-    _TcePuzzleFirstView  = [[TceEditImageView alloc] initWithFrame:CGRectZero];
-    _TcePuzzleSecondView = [[TceEditImageView alloc] initWithFrame:CGRectZero];
-    _TcePuzzleThirdView  = [[TceEditImageView alloc] initWithFrame:CGRectZero];
-    _TcePuzzleFourthView = [[TceEditImageView alloc] initWithFrame:CGRectZero];
-    _TcePuzzleFiveView   = [[TceEditImageView alloc] initWithFrame:CGRectZero];
-    _TcePuzzleSixView    = [[TceEditImageView alloc] initWithFrame:CGRectZero];
-    _TcePuzzleSevenView  = [[TceEditImageView alloc] initWithFrame:CGRectZero];
-    _TcePuzzleEightView  = [[TceEditImageView alloc] initWithFrame:CGRectZero];
-    _TcePuzzleNineView   = [[TceEditImageView alloc] initWithFrame:CGRectZero];
+    _TcePuzzleFirstView  = [[DXLINVView alloc] initWithFrame:CGRectZero];
+    _TcePuzzleSecondView = [[DXLINVView alloc] initWithFrame:CGRectZero];
+    _TcePuzzleThirdView  = [[DXLINVView alloc] initWithFrame:CGRectZero];
+    _TcePuzzleFourthView = [[DXLINVView alloc] initWithFrame:CGRectZero];
+    _TcePuzzleFiveView   = [[DXLINVView alloc] initWithFrame:CGRectZero];
+    _TcePuzzleSixView    = [[DXLINVView alloc] initWithFrame:CGRectZero];
+    _TcePuzzleSevenView  = [[DXLINVView alloc] initWithFrame:CGRectZero];
+    _TcePuzzleEightView  = [[DXLINVView alloc] initWithFrame:CGRectZero];
+    _TcePuzzleNineView   = [[DXLINVView alloc] initWithFrame:CGRectZero];
     
     [self TcePuzzleResetAllView];
     
@@ -101,6 +104,12 @@
     [self addSubview:_TcePuzzleSevenView];
     [self addSubview:_TcePuzzleEightView];
     [self addSubview:_TcePuzzleNineView];
+    
+    self.manage = [[DXLINVManage alloc]init];
+    self.manage.backgroundColor = [UIColor clearColor];
+    [self addSubview:self.manage];
+    self.manage.delegate = self;
+    [self.manage setInvViews:_TcePuzzleContentViewArray];
 }
 
 - (void)TcePuzzleResetAllView
@@ -116,7 +125,7 @@
     [self TcePuzzleStyleSettingWithView:_TcePuzzleNineView];
 }
 
-- (void)TcePuzzleStyleSettingWithView:(TceEditImageView *)view
+- (void)TcePuzzleStyleSettingWithView:(DXLINVView *)view
 {
     view.frame = CGRectZero;
     [view setClipsToBounds:YES];
@@ -219,9 +228,24 @@
                 [path closePath];
             }
             if (j < self.TcePuzzleContentViewArray.count) {
-                TceEditImageView *imageView = (TceEditImageView *)self.TcePuzzleContentViewArray[j];
+                DXLINVView *imageView = (DXLINVView *)self.TcePuzzleContentViewArray[j];
                 imageView.frame = rect;
-                imageView.editDelegate = self;
+                if (imageView.originalImage == nil) {
+                    imageView.isVideo = NO;
+                    UIImage *defaultImage = [UIImage imageNamed:@"clearMark"];
+                    [imageView setImage:defaultImage];
+                    imageView.originalImage = defaultImage;
+                }else if(imageView.isVideo){
+                    if (imageView.videoAsset) {
+                        [imageView updateVideoContentViewConstraint];
+                    }
+                }else if(imageView.originalImage && !imageView.isVideo){
+                    imageView.isVideo = NO;
+                    [imageView updateImageViewConstraint];
+                }
+                imageView.filterName = @"";
+                
+                //imageView.editDelegate = self;
                 //NSLog(@"======imageView.frame:[x:%f,y:%f,width:%f,hieght:%f]",imageView.frame.origin.x,imageView.frame.origin.y,imageView.frame.size.width,imageView.frame.size.height);
                 NSArray *array = @[@"#2B2B2B",@"#FA5150",@"#FEC200",@"#07C160",@"#10ADFF",@"#6467EF",@"#FF0000",@"#FF4500",@"#FFD700",@"#40E0D0",@"#4682B4",@"#6495ED",@"#483D8B",@"#9400D3",
                     @"#8B008B",@"#C71585",@"#FF1493",@"#DC143C",@"#FFB6C1",@"#4B0082"
@@ -336,6 +360,62 @@
     [[UIViewController currentViewController].navigationController pushViewController:nextview animated:YES];
 }
 
+- (void)changeImageClick:(DXLINVView *)invView {
+    if (self.cutterDxlinviewTag == invView.tag) {
+        //去相册替换资源
+        [self toAlbumChangeInvView:invView];
+    }else{
+        //标记当前选中状态的invView
+        self.cutterDxlinviewTag = invView.tag;
+    }
+    
+    NSLog(@"当前view的tag:%ld DXLINVViewh状态：%d",(long)invView.tag,invView.invViewtatus);
+}
 
+- (void)toAlbumChangeInvView:(DXLINVView *)invView {
+    
+    CustomAlbumController *nextview = [[CustomAlbumController alloc] init];
+    nextview.didSelextAssetfinsh = ^(PHAsset * _Nonnull asset) {
+        //如果是图片
+        if (asset.mediaType == PHAssetMediaTypeImage) {
+            NSLog(@"====选的是图片资源====");
+            PHImageRequestOptions *requestOptions = [PHImageRequestOptions new];
+            requestOptions.resizeMode = PHImageRequestOptionsResizeModeExact;
+            requestOptions.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+            requestOptions.networkAccessAllowed = YES;
+            requestOptions.synchronous = YES;
+            CGSize targetSize = CGSizeMake(5000, 5000);
+            [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeDefault options:requestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+
+                    invView.isVideo = NO;
+                    [invView setImage:result];
+                    invView.originalImage = result;
+
+                });
+                
+            }];
+            
+        }else if ([[asset valueForKey:@"filename"] hasSuffix:@"GIF"] ||
+                  [[asset valueForKey:@"filename"] hasSuffix:@"gif"]){
+            NSLog(@"====选的是GIF资源====");
+        }else if(asset.mediaType == PHAssetMediaTypeVideo){
+            NSLog(@"====选的是视频资源====");
+            invView.isVideo = YES;
+            [invView setVideoResources:asset];
+        }
+        
+        //
+        for(DXLINVView *view in self.manage.invViews){
+            if (view.isVideo) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [view.videoPlayerController playFromCurrentTime];
+                });
+            }
+        }
+    };
+    [[UIViewController currentViewController].navigationController pushViewController:nextview animated:YES];
+}
 
 @end

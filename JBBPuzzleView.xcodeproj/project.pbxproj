@@ -21,6 +21,8 @@
 		291DF2F2274E2F610082B6DC /* Comp_1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 291DF2F1274E2F610082B6DC /* Comp_1.gif */; };
 		29357A6E274E4DAD00BD986D /* TceEditImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29357A6D274E4DAD00BD986D /* TceEditImageView.m */; };
 		29357A71274E5A0B00BD986D /* UIViewController+GifMakingUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 29357A6F274E5A0B00BD986D /* UIViewController+GifMakingUtils.m */; };
+		29357A76274E69E000BD986D /* PostersCollageSingeToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29357A73274E69E000BD986D /* PostersCollageSingeToolView.m */; };
+		29357A77274E69E000BD986D /* PostersCollageSingeToolView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29357A74274E69E000BD986D /* PostersCollageSingeToolView.xib */; };
 		29B397F7274B95C700C6FAC7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B397F6274B95C700C6FAC7 /* AppDelegate.m */; };
 		29B397FD274B95C700C6FAC7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B397FC274B95C700C6FAC7 /* ViewController.m */; };
 		29B39800274B95C700C6FAC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29B397FE274B95C700C6FAC7 /* Main.storyboard */; };
@@ -37,6 +39,28 @@
 		29B3983B274C935C00C6FAC7 /* PuzzleStyleViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29B39839274C935C00C6FAC7 /* PuzzleStyleViewCell.xib */; };
 		29B3983F274CA5E600C6FAC7 /* PuzzleBgColorViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B3983D274CA5E500C6FAC7 /* PuzzleBgColorViewCell.m */; };
 		29B39840274CA5E600C6FAC7 /* PuzzleBgColorViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29B3983E274CA5E500C6FAC7 /* PuzzleBgColorViewCell.xib */; };
+		29F3813E27546DC7009D9EDC /* PBJVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F3813A27546DC6009D9EDC /* PBJVideoPlayerController.m */; };
+		29F3813F27546DC7009D9EDC /* PBJVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F3813B27546DC6009D9EDC /* PBJVideoView.m */; };
+		29F3814027546DC7009D9EDC /* play_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 29F3813D27546DC6009D9EDC /* play_button@2x.png */; };
+		29F3815127548A7A009D9EDC /* CustomVideoCompositing.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F3814327548A7A009D9EDC /* CustomVideoCompositing.m */; };
+		29F3815227548A7A009D9EDC /* MFShaderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F3814527548A7A009D9EDC /* MFShaderHelper.m */; };
+		29F3815327548A7A009D9EDC /* MFPixelBufferHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F3814627548A7A009D9EDC /* MFPixelBufferHelper.m */; };
+		29F3815427548A7A009D9EDC /* CustomVideoCompositionInstruction.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F3814727548A7A009D9EDC /* CustomVideoCompositionInstruction.m */; };
+		29F3815527548A7A009D9EDC /* CustomFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F3814927548A7A009D9EDC /* CustomFilter.m */; };
+		29F3815627548A7A009D9EDC /* Normal.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 29F3814B27548A7A009D9EDC /* Normal.fsh */; };
+		29F3815727548A7A009D9EDC /* YUVConversion.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 29F3814C27548A7A009D9EDC /* YUVConversion.fsh */; };
+		29F3815827548A7A009D9EDC /* Normal.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 29F3814D27548A7A009D9EDC /* Normal.vsh */; };
+		29F3815927548A7A009D9EDC /* YUVConversion.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 29F3814E27548A7A009D9EDC /* YUVConversion.vsh */; };
+		29F3815F2754AA00009D9EDC /* DXLINVView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F3815B2754AA00009D9EDC /* DXLINVView.m */; };
+		29F381602754AA00009D9EDC /* DXLINVManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F3815C2754AA00009D9EDC /* DXLINVManage.m */; };
+		29F3816A2754E39A009D9EDC /* VideoThemesData.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F381632754E39A009D9EDC /* VideoThemesData.m */; };
+		29F3816B2754E39A009D9EDC /* VideoThemes.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F381652754E39A009D9EDC /* VideoThemes.m */; };
+		29F3816C2754E39A009D9EDC /* ExportEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F381672754E39A009D9EDC /* ExportEffects.m */; };
+		29F3816D2754E39A009D9EDC /* VideoBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F381682754E39A009D9EDC /* VideoBuilder.m */; };
+		29F381782754E5D2009D9EDC /* ColorData.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F381702754E5D2009D9EDC /* ColorData.m */; };
+		29F381792754E5D2009D9EDC /* PuzzleData.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F381712754E5D2009D9EDC /* PuzzleData.m */; };
+		29F3817A2754E5D2009D9EDC /* AVAsset+help.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F381762754E5D2009D9EDC /* AVAsset+help.m */; };
+		29F3817B2754E5D2009D9EDC /* CustomVideoCompositor.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F381772754E5D2009D9EDC /* CustomVideoCompositor.m */; };
 		FF349688EF0567E7EC2BF5D3 /* Pods_JBBPuzzleView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A1D93C267F0AC42CFA9EB8 /* Pods_JBBPuzzleView.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +89,9 @@
 		29357A6D274E4DAD00BD986D /* TceEditImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TceEditImageView.m; sourceTree = "<group>"; };
 		29357A6F274E5A0B00BD986D /* UIViewController+GifMakingUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+GifMakingUtils.m"; sourceTree = "<group>"; };
 		29357A70274E5A0B00BD986D /* UIViewController+GifMakingUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+GifMakingUtils.h"; sourceTree = "<group>"; };
+		29357A73274E69E000BD986D /* PostersCollageSingeToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostersCollageSingeToolView.m; sourceTree = "<group>"; };
+		29357A74274E69E000BD986D /* PostersCollageSingeToolView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostersCollageSingeToolView.xib; sourceTree = "<group>"; };
+		29357A75274E69E000BD986D /* PostersCollageSingeToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostersCollageSingeToolView.h; sourceTree = "<group>"; };
 		29B397F2274B95C700C6FAC7 /* JBBPuzzleView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JBBPuzzleView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B397F5274B95C700C6FAC7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		29B397F6274B95C700C6FAC7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -93,6 +120,46 @@
 		29B3983C274CA5E500C6FAC7 /* PuzzleBgColorViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PuzzleBgColorViewCell.h; sourceTree = "<group>"; };
 		29B3983D274CA5E500C6FAC7 /* PuzzleBgColorViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PuzzleBgColorViewCell.m; sourceTree = "<group>"; };
 		29B3983E274CA5E500C6FAC7 /* PuzzleBgColorViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PuzzleBgColorViewCell.xib; sourceTree = "<group>"; };
+		29F3813927546DC6009D9EDC /* PBJVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJVideoView.h; sourceTree = "<group>"; };
+		29F3813A27546DC6009D9EDC /* PBJVideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJVideoPlayerController.m; sourceTree = "<group>"; };
+		29F3813B27546DC6009D9EDC /* PBJVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJVideoView.m; sourceTree = "<group>"; };
+		29F3813C27546DC6009D9EDC /* PBJVideoPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBJVideoPlayerController.h; sourceTree = "<group>"; };
+		29F3813D27546DC6009D9EDC /* play_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play_button@2x.png"; sourceTree = "<group>"; };
+		29F3814227548A7A009D9EDC /* CustomFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFilter.h; sourceTree = "<group>"; };
+		29F3814327548A7A009D9EDC /* CustomVideoCompositing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomVideoCompositing.m; sourceTree = "<group>"; };
+		29F3814427548A7A009D9EDC /* CustomVideoCompositionInstruction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomVideoCompositionInstruction.h; sourceTree = "<group>"; };
+		29F3814527548A7A009D9EDC /* MFShaderHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFShaderHelper.m; sourceTree = "<group>"; };
+		29F3814627548A7A009D9EDC /* MFPixelBufferHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFPixelBufferHelper.m; sourceTree = "<group>"; };
+		29F3814727548A7A009D9EDC /* CustomVideoCompositionInstruction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomVideoCompositionInstruction.m; sourceTree = "<group>"; };
+		29F3814827548A7A009D9EDC /* CustomVideoCompositing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomVideoCompositing.h; sourceTree = "<group>"; };
+		29F3814927548A7A009D9EDC /* CustomFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomFilter.m; sourceTree = "<group>"; };
+		29F3814B27548A7A009D9EDC /* Normal.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Normal.fsh; sourceTree = "<group>"; };
+		29F3814C27548A7A009D9EDC /* YUVConversion.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = YUVConversion.fsh; sourceTree = "<group>"; };
+		29F3814D27548A7A009D9EDC /* Normal.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Normal.vsh; sourceTree = "<group>"; };
+		29F3814E27548A7A009D9EDC /* YUVConversion.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = YUVConversion.vsh; sourceTree = "<group>"; };
+		29F3814F27548A7A009D9EDC /* MFShaderHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFShaderHelper.h; sourceTree = "<group>"; };
+		29F3815027548A7A009D9EDC /* MFPixelBufferHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFPixelBufferHelper.h; sourceTree = "<group>"; };
+		29F3815B2754AA00009D9EDC /* DXLINVView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXLINVView.m; sourceTree = "<group>"; };
+		29F3815C2754AA00009D9EDC /* DXLINVManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXLINVManage.m; sourceTree = "<group>"; };
+		29F3815D2754AA00009D9EDC /* DXLINVView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXLINVView.h; sourceTree = "<group>"; };
+		29F3815E2754AA00009D9EDC /* DXLINVManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXLINVManage.h; sourceTree = "<group>"; };
+		29F381622754E39A009D9EDC /* ExportEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportEffects.h; sourceTree = "<group>"; };
+		29F381632754E39A009D9EDC /* VideoThemesData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoThemesData.m; sourceTree = "<group>"; };
+		29F381642754E39A009D9EDC /* VideoBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoBuilder.h; sourceTree = "<group>"; };
+		29F381652754E39A009D9EDC /* VideoThemes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoThemes.m; sourceTree = "<group>"; };
+		29F381662754E39A009D9EDC /* VideoThemesData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoThemesData.h; sourceTree = "<group>"; };
+		29F381672754E39A009D9EDC /* ExportEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportEffects.m; sourceTree = "<group>"; };
+		29F381682754E39A009D9EDC /* VideoBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoBuilder.m; sourceTree = "<group>"; };
+		29F381692754E39A009D9EDC /* VideoThemes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoThemes.h; sourceTree = "<group>"; };
+		29F3816F2754E5D2009D9EDC /* PuzzleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzleData.h; sourceTree = "<group>"; };
+		29F381702754E5D2009D9EDC /* ColorData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorData.m; sourceTree = "<group>"; };
+		29F381712754E5D2009D9EDC /* PuzzleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzleData.m; sourceTree = "<group>"; };
+		29F381722754E5D2009D9EDC /* ColorData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorData.h; sourceTree = "<group>"; };
+		29F381742754E5D2009D9EDC /* AVAsset+help.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVAsset+help.h"; sourceTree = "<group>"; };
+		29F381752754E5D2009D9EDC /* CustomVideoCompositor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomVideoCompositor.h; sourceTree = "<group>"; };
+		29F381762754E5D2009D9EDC /* AVAsset+help.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVAsset+help.m"; sourceTree = "<group>"; };
+		29F381772754E5D2009D9EDC /* CustomVideoCompositor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomVideoCompositor.m; sourceTree = "<group>"; };
+		29F3817C2754E68A009D9EDC /* PXKConstMarcro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXKConstMarcro.h; sourceTree = "<group>"; };
 		53530ABE46BC7554E5D8AD21 /* Pods-JBBPuzzleView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JBBPuzzleView.release.xcconfig"; path = "Target Support Files/Pods-JBBPuzzleView/Pods-JBBPuzzleView.release.xcconfig"; sourceTree = "<group>"; };
 		61A1D93C267F0AC42CFA9EB8 /* Pods_JBBPuzzleView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JBBPuzzleView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC57396C71712CAC2B63FD9B /* Pods-JBBPuzzleView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JBBPuzzleView.debug.xcconfig"; path = "Target Support Files/Pods-JBBPuzzleView/Pods-JBBPuzzleView.debug.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +193,16 @@
 			path = CustomAblum;
 			sourceTree = "<group>";
 		};
+		29357A72274E69C300BD986D /* otherView */ = {
+			isa = PBXGroup;
+			children = (
+				29357A75274E69E000BD986D /* PostersCollageSingeToolView.h */,
+				29357A73274E69E000BD986D /* PostersCollageSingeToolView.m */,
+				29357A74274E69E000BD986D /* PostersCollageSingeToolView.xib */,
+			);
+			path = otherView;
+			sourceTree = "<group>";
+		};
 		29B397E9274B95C600C6FAC7 = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +224,7 @@
 		29B397F4274B95C700C6FAC7 /* JBBPuzzleView */ = {
 			isa = PBXGroup;
 			children = (
+				29357A72274E69C300BD986D /* otherView */,
 				291DF2B1274DDE330082B6DC /* CustomAblum */,
 				29B39817274BA59300C6FAC7 /* PuzzleLib */,
 				29B39813274B9C2A00C6FAC7 /* Category */,
@@ -198,6 +276,13 @@
 		29B39817274BA59300C6FAC7 /* PuzzleLib */ = {
 			isa = PBXGroup;
 			children = (
+				29F3817C2754E68A009D9EDC /* PXKConstMarcro.h */,
+				29F381732754E5D2009D9EDC /* CustomVideoCompositor */,
+				29F3816E2754E5D2009D9EDC /* SharedData */,
+				29F3815A2754AA00009D9EDC /* INVVIEW */,
+				29F381612754E39A009D9EDC /* VideoEffects */,
+				29F3814127548A7A009D9EDC /* AVFoundationFilter */,
+				29F3813827546DC6009D9EDC /* VideoPlay */,
 				29B39831274BB23400C6FAC7 /* TCESingle.h */,
 				29B39832274BB23400C6FAC7 /* TCESingle.m */,
 				29357A6C274E4DAD00BD986D /* TceEditImageView.h */,
@@ -208,6 +293,95 @@
 				29B39818274BA71400C6FAC7 /* TcePuzzleViewFrameAndPoint.m */,
 			);
 			path = PuzzleLib;
+			sourceTree = "<group>";
+		};
+		29F3813827546DC6009D9EDC /* VideoPlay */ = {
+			isa = PBXGroup;
+			children = (
+				29F3813C27546DC6009D9EDC /* PBJVideoPlayerController.h */,
+				29F3813A27546DC6009D9EDC /* PBJVideoPlayerController.m */,
+				29F3813927546DC6009D9EDC /* PBJVideoView.h */,
+				29F3813B27546DC6009D9EDC /* PBJVideoView.m */,
+				29F3813D27546DC6009D9EDC /* play_button@2x.png */,
+			);
+			path = VideoPlay;
+			sourceTree = "<group>";
+		};
+		29F3814127548A7A009D9EDC /* AVFoundationFilter */ = {
+			isa = PBXGroup;
+			children = (
+				29F3814A27548A7A009D9EDC /* Shader */,
+				29F3814227548A7A009D9EDC /* CustomFilter.h */,
+				29F3814927548A7A009D9EDC /* CustomFilter.m */,
+				29F3814827548A7A009D9EDC /* CustomVideoCompositing.h */,
+				29F3814327548A7A009D9EDC /* CustomVideoCompositing.m */,
+				29F3814427548A7A009D9EDC /* CustomVideoCompositionInstruction.h */,
+				29F3814727548A7A009D9EDC /* CustomVideoCompositionInstruction.m */,
+				29F3815027548A7A009D9EDC /* MFPixelBufferHelper.h */,
+				29F3814627548A7A009D9EDC /* MFPixelBufferHelper.m */,
+				29F3814F27548A7A009D9EDC /* MFShaderHelper.h */,
+				29F3814527548A7A009D9EDC /* MFShaderHelper.m */,
+			);
+			path = AVFoundationFilter;
+			sourceTree = "<group>";
+		};
+		29F3814A27548A7A009D9EDC /* Shader */ = {
+			isa = PBXGroup;
+			children = (
+				29F3814B27548A7A009D9EDC /* Normal.fsh */,
+				29F3814C27548A7A009D9EDC /* YUVConversion.fsh */,
+				29F3814D27548A7A009D9EDC /* Normal.vsh */,
+				29F3814E27548A7A009D9EDC /* YUVConversion.vsh */,
+			);
+			path = Shader;
+			sourceTree = "<group>";
+		};
+		29F3815A2754AA00009D9EDC /* INVVIEW */ = {
+			isa = PBXGroup;
+			children = (
+				29F3815E2754AA00009D9EDC /* DXLINVManage.h */,
+				29F3815C2754AA00009D9EDC /* DXLINVManage.m */,
+				29F3815D2754AA00009D9EDC /* DXLINVView.h */,
+				29F3815B2754AA00009D9EDC /* DXLINVView.m */,
+			);
+			path = INVVIEW;
+			sourceTree = "<group>";
+		};
+		29F381612754E39A009D9EDC /* VideoEffects */ = {
+			isa = PBXGroup;
+			children = (
+				29F381622754E39A009D9EDC /* ExportEffects.h */,
+				29F381672754E39A009D9EDC /* ExportEffects.m */,
+				29F381642754E39A009D9EDC /* VideoBuilder.h */,
+				29F381682754E39A009D9EDC /* VideoBuilder.m */,
+				29F381692754E39A009D9EDC /* VideoThemes.h */,
+				29F381652754E39A009D9EDC /* VideoThemes.m */,
+				29F381662754E39A009D9EDC /* VideoThemesData.h */,
+				29F381632754E39A009D9EDC /* VideoThemesData.m */,
+			);
+			path = VideoEffects;
+			sourceTree = "<group>";
+		};
+		29F3816E2754E5D2009D9EDC /* SharedData */ = {
+			isa = PBXGroup;
+			children = (
+				29F381722754E5D2009D9EDC /* ColorData.h */,
+				29F381702754E5D2009D9EDC /* ColorData.m */,
+				29F3816F2754E5D2009D9EDC /* PuzzleData.h */,
+				29F381712754E5D2009D9EDC /* PuzzleData.m */,
+			);
+			path = SharedData;
+			sourceTree = "<group>";
+		};
+		29F381732754E5D2009D9EDC /* CustomVideoCompositor */ = {
+			isa = PBXGroup;
+			children = (
+				29F381742754E5D2009D9EDC /* AVAsset+help.h */,
+				29F381762754E5D2009D9EDC /* AVAsset+help.m */,
+				29F381752754E5D2009D9EDC /* CustomVideoCompositor.h */,
+				29F381772754E5D2009D9EDC /* CustomVideoCompositor.m */,
+			);
+			path = CustomVideoCompositor;
 			sourceTree = "<group>";
 		};
 		D3D6CD565AB67B0ED238F254 /* Pods */ = {
@@ -286,14 +460,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29F3814027546DC7009D9EDC /* play_button@2x.png in Resources */,
 				29B39805274B95D600C6FAC7 /* LaunchScreen.storyboard in Resources */,
 				29B39840274CA5E600C6FAC7 /* PuzzleBgColorViewCell.xib in Resources */,
 				29B39802274B95D600C6FAC7 /* Assets.xcassets in Resources */,
+				29F3815627548A7A009D9EDC /* Normal.fsh in Resources */,
+				29F3815827548A7A009D9EDC /* Normal.vsh in Resources */,
 				291DF2F2274E2F610082B6DC /* Comp_1.gif in Resources */,
+				29F3815727548A7A009D9EDC /* YUVConversion.fsh in Resources */,
 				291DF2E8274E12820082B6DC /* AlbumTableViewCell.xib in Resources */,
 				29B39800274B95C700C6FAC7 /* Main.storyboard in Resources */,
+				29F3815927548A7A009D9EDC /* YUVConversion.vsh in Resources */,
 				291DF2B6274DDE600082B6DC /* CustomAlbumController.xib in Resources */,
 				291DF2ED274E200E0082B6DC /* PickerCell.xib in Resources */,
+				29357A77274E69E000BD986D /* PostersCollageSingeToolView.xib in Resources */,
 				29B39812274B9A2400C6FAC7 /* JBBPuzzleViewController.xib in Resources */,
 				29B3983B274C935C00C6FAC7 /* PuzzleStyleViewCell.xib in Resources */,
 			);
@@ -351,23 +531,41 @@
 				29B3983F274CA5E600C6FAC7 /* PuzzleBgColorViewCell.m in Sources */,
 				291DF2EC274E200E0082B6DC /* PickerCell.m in Sources */,
 				291DF2AA274CC1510082B6DC /* UIColor+GifMakingUtils.m in Sources */,
+				29F3816D2754E39A009D9EDC /* VideoBuilder.m in Sources */,
 				291DF2E3274DE9950082B6DC /* GIFMakingNaviViewController.m in Sources */,
 				29B3981A274BA71400C6FAC7 /* TcePuzzleViewFrameAndPoint.m in Sources */,
+				29F3816B2754E39A009D9EDC /* VideoThemes.m in Sources */,
+				29F381782754E5D2009D9EDC /* ColorData.m in Sources */,
 				29B39816274B9CCE00C6FAC7 /* UIView+GifMakingUtils.m in Sources */,
+				29F3816A2754E39A009D9EDC /* VideoThemesData.m in Sources */,
 				29B397FD274B95C700C6FAC7 /* ViewController.m in Sources */,
 				291DF2E7274E12820082B6DC /* AlbumTableViewCell.m in Sources */,
 				29B397F7274B95C700C6FAC7 /* AppDelegate.m in Sources */,
+				29F381602754AA00009D9EDC /* DXLINVManage.m in Sources */,
+				29F3813E27546DC7009D9EDC /* PBJVideoPlayerController.m in Sources */,
 				29B3983A274C935C00C6FAC7 /* PuzzleStyleViewCell.m in Sources */,
 				29B39833274BB23400C6FAC7 /* TCESingle.m in Sources */,
 				291DF2F0274E2C520082B6DC /* NSData+GifMaking.m in Sources */,
 				291DF2E0274DE5BD0082B6DC /* UILabel+HXExtension.m in Sources */,
+				29F381792754E5D2009D9EDC /* PuzzleData.m in Sources */,
+				29F3815527548A7A009D9EDC /* CustomFilter.m in Sources */,
 				29357A6E274E4DAD00BD986D /* TceEditImageView.m in Sources */,
+				29F3813F27546DC7009D9EDC /* PBJVideoView.m in Sources */,
+				29F3817B2754E5D2009D9EDC /* CustomVideoCompositor.m in Sources */,
 				29B39808274B95D600C6FAC7 /* main.m in Sources */,
+				29F3815127548A7A009D9EDC /* CustomVideoCompositing.m in Sources */,
 				291DF2D2274DE3610082B6DC /* UIView+HXExtension.m in Sources */,
+				29F3815227548A7A009D9EDC /* MFShaderHelper.m in Sources */,
 				29B39836274C832000C6FAC7 /* TcePuzzlePuzzleView.m in Sources */,
+				29357A76274E69E000BD986D /* PostersCollageSingeToolView.m in Sources */,
 				291DF2B5274DDE600082B6DC /* CustomAlbumController.m in Sources */,
+				29F3816C2754E39A009D9EDC /* ExportEffects.m in Sources */,
 				29357A71274E5A0B00BD986D /* UIViewController+GifMakingUtils.m in Sources */,
 				29B39811274B9A2400C6FAC7 /* JBBPuzzleViewController.m in Sources */,
+				29F3815327548A7A009D9EDC /* MFPixelBufferHelper.m in Sources */,
+				29F3817A2754E5D2009D9EDC /* AVAsset+help.m in Sources */,
+				29F3815427548A7A009D9EDC /* CustomVideoCompositionInstruction.m in Sources */,
+				29F3815F2754AA00009D9EDC /* DXLINVView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

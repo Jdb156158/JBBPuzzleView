@@ -11,6 +11,10 @@
 #import "PuzzleBgColorViewCell.h"
 #import "CustomAlbumController.h"
 
+#import "VideoThemesData.h"
+#import "ExportEffects.h"
+#import "PuzzleData.h"
+
 @interface JBBPuzzleViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 ,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
@@ -99,7 +103,6 @@
     if (!_tcePuzzleView){
         _tcePuzzleView = [[TcePuzzlePuzzleView alloc] initWithFrame:CGRectMake(0, 0, self.canvasBgView.frame.size.width, self.canvasBgView.frame.size.height)];
         _tcePuzzleView.backgroundColor = [UIColor whiteColor];
-        //_tcePuzzleView.TcePuzzleAssetArray = self.tceImages;
         _tcePuzzleView.grpValue = 5;
         [self.canvasBgView addSubview:_tcePuzzleView];
     }
@@ -248,9 +251,6 @@
     [self.tcePuzzleView setTcePuzzleStyleRow:self.puzzleStyleRow];
     
     [self updateBiliBtnStatus:2];
-    
-    CustomAlbumController *nextview = [[CustomAlbumController alloc] init];
-    [self.navigationController pushViewController:nextview animated:YES];
         
 }
 
@@ -264,6 +264,154 @@
     
     self.Scale9bi16Btn.layer.borderWidth = index==2?1:0;
     self.Scale9bi16Btn.layer.borderColor = index==2?[UIColor whiteColor].CGColor:[UIColor clearColor].CGColor;
+}
+
+- (IBAction)clickSaveBtn:(id)sender {
+    
+    
+    [SVProgressHUD showWithStatus:@"处理中..."];
+    
+    //设置背景音乐
+    [[[VideoThemesData sharedInstance] getThemeByType:kThemeCustom] setBgMusicFile:nil];
+    
+    //处理进度监听
+    [[ExportEffects sharedInstance] setThemeCurrentType:kThemeCustom];
+    [[ExportEffects sharedInstance] setExportProgressBlock: ^(NSNumber *percentage, NSString *title) {
+        NSLog(@"===当前处理进度===%@",percentage);
+        NSString *currentPrecentage = [NSString stringWithFormat:@"%d%%", (int)([percentage floatValue] * 100)];
+        [SVProgressHUD showWithStatus:currentPrecentage];
+    }];
+    [[ExportEffects sharedInstance] setFinishVideoBlock: ^(BOOL success, id result) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (success){
+                NSString *outputPath = [ExportEffects sharedInstance].filenameBlock();
+                NSLog(@"===处理后的视频合成地址===%@",outputPath);
+                [SVProgressHUD showSuccessWithStatus:@"处理完成"];
+            } else {
+                NSLog(@"===处理失败===");
+                [SVProgressHUD showErrorWithStatus:@"处理失败"];
+            }
+        });
+    }];
+    
+    NSMutableArray *assetVideoUrlArr = [NSMutableArray array];//视频素材
+    NSMutableArray *photoViewArray = [NSMutableArray array];//图片素材
+    
+    for (DXLINVView *item in self.tcePuzzleView.manage.invViews) {
+        if (item.isVideo) {
+            [assetVideoUrlArr addObject:item.videoUrl];
+        } else {
+            [photoViewArray addObject:[self getImage:item]];// 获取展示图片
+        }
+    }
+    
+    // frame
+    // superSizeOriginal
+    CGSize superSizeOriginal = CGSizeMake(960, 960);
+    CGSize superSize = CGSizeMake(960, 960);
+    superSize = [self sizeScaleWithSize:superSize scale:2.0f];
+
+    [[PuzzleData sharedInstance] setSuperFrame:superSizeOriginal];
+    
+    // frames
+    NSMutableArray *frames = [NSMutableArray array];
+    NSMutableArray *photoViewFrames = [NSMutableArray array];
+    NSMutableArray *cropViewFrames = [NSMutableArray array];
+
+    for (DXLINVView *item in self.tcePuzzleView.manage.invViews) {
+        if (item.isVideo) {
+            CGRect rectOriginal = [self reductionRect:item.frame andSuperSize:superSize];
+            rectOriginal.origin.y = fabs(superSizeOriginal.height - rectOriginal.origin.y - CGRectGetHeight(rectOriginal));
+            [frames addObject:[NSValue valueWithCGRect:rectOriginal]];
+            
+            // 获取裁剪区域
+            CGRect videoRect = item.videoContentView.frame;
+            CGRect videoOriginalRect = item.videoVideOriginalRect;
+
+            CGFloat fixelW = CGImageGetWidth(item.imageFrameView.image.CGImage);
+            CGFloat fixelH = CGImageGetHeight(item.imageFrameView.image.CGImage);
+            CGFloat w = item.frame.size.width;
+            CGFloat h = item.frame.size.height;
+            
+            CGFloat uiwh = w/h;
+            CGFloat imagewh = fixelW/fixelH;
+
+            // 原框大小除去伸缩比
+            CGFloat cropRectScal = videoRect.size.width/videoOriginalRect.size.width;// 视频视图显示大小除去原始大小得到伸缩比
+            CGFloat cropRectX = fabs(videoRect.origin.x)/cropRectScal*1.5;
+            CGFloat cropRectY = fabs(videoRect.origin.y)/cropRectScal*1.5;
+            
+            CGFloat cropRectW = 0.0;
+            CGFloat cropRectH = 0.0;
+
+            if (uiwh>imagewh){
+                cropRectW = fixelW/cropRectScal;
+                CGFloat radio = w / fixelW;
+                cropRectH = item.frame.size.height/radio/cropRectScal;
+            } else {
+                cropRectH = fixelH/cropRectScal;
+                CGFloat radio = h / fixelH;
+                cropRectW = item.frame.size.width/radio/cropRectScal;
+
+            }
+
+            CGRect cropRect = CGRectMake(cropRectX, cropRectY, cropRectW, cropRectH);
+            [cropViewFrames addObject:[NSValue valueWithCGRect:cropRect]];
+
+        } else {
+            CGRect rectOriginal = [self reductionRect:item.frame andSuperSize:superSize];
+            rectOriginal.origin.y = fabs(superSizeOriginal.height - rectOriginal.origin.y - CGRectGetHeight(rectOriginal));
+            [photoViewFrames addObject:[NSValue valueWithCGRect:rectOriginal]];
+        }
+    }
+    [[PuzzleData sharedInstance] setFrames:frames];
+    [[PuzzleData sharedInstance] setCropFramesArray:cropViewFrames];
+    
+    // 获取相片视图
+    [[PuzzleData sharedInstance] setPhotoViewArray:photoViewArray];
+    [[PuzzleData sharedInstance] setPhotoViewFramesArray:photoViewFrames];
+    
+    // 合成
+    [[ExportEffects sharedInstance] addEffectToVideo:assetVideoUrlArr];
+}
+
+/** 获取图片 */
+- (UIImage *)getImage:(UIView *)view {
+    //1.开启一个位图上下文
+    CGSize size = CGSizeMake(view.layer.bounds.size.width, view.layer.bounds.size.height);
+    UIGraphicsBeginImageContextWithOptions(size, NO, [UIScreen mainScreen].scale);
+    //2.把画板上的内容渲染到上下文当中
+    CGContextRef ctx =  UIGraphicsGetCurrentContext();
+    [view.layer renderInContext:ctx];
+    //3.从上下文当中取出一张图片
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+
+    //4.关闭上下文
+    UIGraphicsEndImageContext();
+
+    return newImage;
+}
+
+- (CGRect)reductionRect:(CGRect)rect andSuperSize:(CGSize)superSize {
+    CGRect rRect = CGRectZero;
+    rRect.origin.x = rect.origin.x / self.tcePuzzleView.frame.size.width*superSize.width * 2;
+    rRect.origin.y = rect.origin.y / self.tcePuzzleView.frame.size.height*superSize.height * 2;
+    rRect.size.width = rect.size.width / self.tcePuzzleView.frame.size.width*superSize.width * 2;
+    rRect.size.height = rect.size.height / self.tcePuzzleView.frame.size.height*superSize.height * 2;
+    
+    return rRect;
+}
+
+- (CGSize)sizeScaleWithSize:(CGSize)size scale:(CGFloat)scale {
+    if (scale <= 0)
+    {
+        scale = 1.0f;
+    }
+    
+    CGSize retSize = CGSizeZero;
+    retSize.width = size.width/scale;
+    retSize.height = size.height/scale;
+    return  retSize;
 }
 
 

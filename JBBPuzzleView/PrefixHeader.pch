@@ -12,12 +12,14 @@
 #import <Photos/Photos.h>
 #import <Masonry/Masonry.h>
 #import <YYImage/YYImage.h>
+#import "SVProgressHUD.h"
 #import "UIColor+GifMakingUtils.h"
 #import "UIViewController+GifMakingUtils.h"
 
 #import "UIView+HXExtension.h"
 #import "UILabel+HXExtension.h"
 #import "NSData+GifMaking.h"
+#import "PXKConstMarcro.h"
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.

@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DXLINVView.h"
+#import "DXLINVManage.h"
 
 @protocol TcePuzzlePuzzleViewDelegate<NSObject>
 
@@ -27,5 +29,8 @@
 @property (nonatomic, assign) NSInteger TcePuzzleStyleRow;
 //边距
 @property (nonatomic, assign) NSInteger grpValue;
+
+//视图管理
+@property(nonatomic, strong) DXLINVManage * manage;
 
 @end
