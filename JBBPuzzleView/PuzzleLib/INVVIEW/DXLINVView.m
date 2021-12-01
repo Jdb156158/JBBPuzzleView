@@ -183,14 +183,22 @@
         if ([asset isKindOfClass:[AVURLAsset class]]) {
             AVURLAsset* urlAsset = (AVURLAsset*)asset;
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self createVideoPlayView:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) withURL:urlAsset.URL];
-                
-                [self bringSubviewToFront:self->changePicBtn];
-                
-                [self setInvViewtatus:INVViewtatusNone];
+                self.videoUrl = urlAsset.URL;
             });
      }
     }];
+}
+
+- (void)setVideoUrl:(NSURL *)videoUrl{
+    _videoUrl = videoUrl;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self createVideoPlayView:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) withURL:videoUrl];
+        
+        [self bringSubviewToFront:self->changePicBtn];
+        
+        [self setInvViewtatus:INVViewtatusNone];
+    });
 }
 
 - (void)createVideoPlayView:(CGRect)frame withURL:(NSURL*)url {
@@ -261,7 +269,6 @@
         make.edges.equalTo(self);
     }];
     
-    self.videoUrl = url;
     [self playDemoVideo:[url absoluteString] withinVideoPlayerController:videoPlayerController];
 }
 

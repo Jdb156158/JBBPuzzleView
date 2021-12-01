@@ -70,11 +70,6 @@
     
     [self TcePuzzleResetAllView];
     
-    if (!_TcePuzzleContentViewArray)
-    {
-        _TcePuzzleContentViewArray = [NSMutableArray array];
-    }
-    
     _TcePuzzleFirstView.tag  = 1;
     _TcePuzzleSecondView.tag = 2;
     _TcePuzzleThirdView.tag  = 3;
@@ -85,15 +80,6 @@
     _TcePuzzleEightView.tag = 8;
     _TcePuzzleNineView.tag   = 9;
     
-    [_TcePuzzleContentViewArray addObject:_TcePuzzleFirstView];
-    [_TcePuzzleContentViewArray addObject:_TcePuzzleSecondView];
-    [_TcePuzzleContentViewArray addObject:_TcePuzzleThirdView];
-    [_TcePuzzleContentViewArray addObject:_TcePuzzleFourthView];
-    [_TcePuzzleContentViewArray addObject:_TcePuzzleFiveView];
-    [_TcePuzzleContentViewArray addObject:_TcePuzzleSixView];
-    [_TcePuzzleContentViewArray addObject:_TcePuzzleSevenView];
-    [_TcePuzzleContentViewArray addObject:_TcePuzzleEightView];
-    [_TcePuzzleContentViewArray addObject:_TcePuzzleNineView];
     
     [self addSubview:_TcePuzzleFirstView];
     [self addSubview:_TcePuzzleSecondView];
@@ -109,7 +95,6 @@
     self.manage.backgroundColor = [UIColor clearColor];
     [self addSubview:self.manage];
     self.manage.delegate = self;
-    [self.manage setInvViews:_TcePuzzleContentViewArray];
 }
 
 - (void)TcePuzzleResetAllView
@@ -130,12 +115,73 @@
     view.frame = CGRectZero;
     [view setClipsToBounds:YES];
     [view setUserInteractionEnabled:YES];
-    [view setBackgroundColor:[UIColor grayColor]];
+    [view setBackgroundColor:[UIColor colorWithHexString:@"#181A1E"]];
 }
 
 
 - (void)setTcePuzzleStyleIndex:(NSInteger)TcePuzzleStyleIndex
 {
+    
+    _TcePuzzleContentViewArray = [NSMutableArray array];
+    
+    if (TcePuzzleStyleIndex == 2) {
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleFirstView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleSecondView];
+    }else if (TcePuzzleStyleIndex == 3){
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleFirstView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleSecondView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleThirdView];
+    }else if (TcePuzzleStyleIndex == 4){
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleFirstView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleSecondView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleThirdView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleFourthView];
+    }else if (TcePuzzleStyleIndex == 5){
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleFirstView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleSecondView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleThirdView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleFourthView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleFiveView];
+    }else if (TcePuzzleStyleIndex == 6){
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleFirstView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleSecondView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleThirdView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleFourthView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleFiveView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleSixView];
+    }else if (TcePuzzleStyleIndex == 7){
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleFirstView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleSecondView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleThirdView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleFourthView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleFiveView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleSixView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleSevenView];
+    }else if (TcePuzzleStyleIndex == 8){
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleFirstView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleSecondView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleThirdView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleFourthView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleFiveView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleSixView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleSevenView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleEightView];
+    }else if (TcePuzzleStyleIndex == 9){
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleFirstView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleSecondView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleThirdView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleFourthView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleFiveView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleSixView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleSevenView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleEightView];
+        [_TcePuzzleContentViewArray addObject:_TcePuzzleNineView];
+    }
+    
+    [self.manage.invViews removeAllObjects];
+    [self.manage setInvViews:_TcePuzzleContentViewArray];
+    
+    
     _points = [TcePuzzleViewFrameAndPoint tceGetArrayWithQuantity:TcePuzzleStyleIndex];
     self.TcePuzzleStyleRow = [TCESingle tceSingle].tceStyleRow;
     self.grpValue = [TCESingle tceSingle].tceGra;
@@ -247,10 +293,6 @@
                 
                 //imageView.editDelegate = self;
                 //NSLog(@"======imageView.frame:[x:%f,y:%f,width:%f,hieght:%f]",imageView.frame.origin.x,imageView.frame.origin.y,imageView.frame.size.width,imageView.frame.size.height);
-                NSArray *array = @[@"#2B2B2B",@"#FA5150",@"#FEC200",@"#07C160",@"#10ADFF",@"#6467EF",@"#FF0000",@"#FF4500",@"#FFD700",@"#40E0D0",@"#4682B4",@"#6495ED",@"#483D8B",@"#9400D3",
-                    @"#8B008B",@"#C71585",@"#FF1493",@"#DC143C",@"#FFB6C1",@"#4B0082"
-                ];
-                imageView.backgroundColor = [UIColor colorWithHexString:array[j]];
 
             }
         }
@@ -372,12 +414,26 @@
     NSLog(@"当前view的tag:%ld DXLINVViewh状态：%d",(long)invView.tag,invView.invViewtatus);
 }
 
+-(void)updatePlayVideoDXLINVManageView{
+    for(DXLINVView *view in self.manage.invViews){
+        if (view.isVideo) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [view.videoPlayerController playFromCurrentTime];
+            });
+        }
+    }
+}
+
 - (void)toAlbumChangeInvView:(DXLINVView *)invView {
     
     CustomAlbumController *nextview = [[CustomAlbumController alloc] init];
     nextview.didSelextAssetfinsh = ^(PHAsset * _Nonnull asset) {
-        //如果是图片
-        if (asset.mediaType == PHAssetMediaTypeImage) {
+        //如果是GIF
+        if ([[asset valueForKey:@"filename"] hasSuffix:@"GIF"] ||
+                  [[asset valueForKey:@"filename"] hasSuffix:@"gif"]){
+            NSLog(@"====选的是GIF资源====");
+            [self gifToNsdata:asset invView:invView];
+        }else if (asset.mediaType == PHAssetMediaTypeImage) {
             NSLog(@"====选的是图片资源====");
             PHImageRequestOptions *requestOptions = [PHImageRequestOptions new];
             requestOptions.resizeMode = PHImageRequestOptionsResizeModeExact;
@@ -397,25 +453,185 @@
                 
             }];
             
-        }else if ([[asset valueForKey:@"filename"] hasSuffix:@"GIF"] ||
-                  [[asset valueForKey:@"filename"] hasSuffix:@"gif"]){
-            NSLog(@"====选的是GIF资源====");
-        }else if(asset.mediaType == PHAssetMediaTypeVideo){
+        } else if(asset.mediaType == PHAssetMediaTypeVideo){
             NSLog(@"====选的是视频资源====");
             invView.isVideo = YES;
             [invView setVideoResources:asset];
         }
         
-        //
-        for(DXLINVView *view in self.manage.invViews){
-            if (view.isVideo) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [view.videoPlayerController playFromCurrentTime];
-                });
-            }
-        }
+        //播放
+        //[self updatePlayVideoDXLINVManageView];
     };
     [[UIViewController currentViewController].navigationController pushViewController:nextview animated:YES];
 }
 
+
+#pragma mark - 跳转到编辑gif详情页面
+- (void)gifToNsdata:(PHAsset *)asset invView:(DXLINVView *)invView{
+    
+    NSString *MYGIF_New_PATH =  [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"MyNEWGIF"];
+    
+    [[NSFileManager defaultManager] createDirectoryAtPath:MYGIF_New_PATH withIntermediateDirectories:YES attributes:nil error:nil];
+    __weak typeof(self) weakself = self;
+    
+    //首先将GIF 图片的 PHAsset 转 NSData
+    [SVProgressHUD showWithStatus:@"正在读取..."];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSArray *resourceList = [PHAssetResource assetResourcesForAsset:asset];
+        [resourceList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            PHAssetResource *resource = obj;
+            PHAssetResourceRequestOptions *option = [[PHAssetResourceRequestOptions alloc]init];
+            option.networkAccessAllowed = YES;
+            if ([resource.uniformTypeIdentifier isEqualToString:@"com.compuserve.gif"]) {
+                NSLog(@"是gif图片格式");
+                // 首先,需要获取沙盒路径
+                NSString * imageFilePath = [MYGIF_New_PATH stringByAppendingPathComponent:resource.originalFilename];
+                // 拼接图片名为resource.originalFilename的路径
+                [weakself deleteFileAtPath:imageFilePath];
+                __block NSData *data = [[NSData alloc]init];
+                [[PHAssetResourceManager defaultManager] writeDataForAssetResource:resource toFile:[NSURL fileURLWithPath:imageFilePath]  options:option completionHandler:^(NSError * _Nullable error) {
+                    if (error) {
+                        NSLog(@"error:%@",error);
+                        if(error.code == -1){//文件已存在
+                            data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:imageFilePath]];
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                //完成了转换
+                                [weakself gifToImagesArray:data invView:invView];
+                            });
+                        }else {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [SVProgressHUD dismiss];
+                                [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"no_gif_resource", nil)];
+                            });
+                        }
+                    } else {
+                        data = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:imageFilePath]];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            //完成了转换
+                            [weakself gifToImagesArray:data invView:invView];
+                        });
+                    }
+
+                }];
+
+            }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [SVProgressHUD dismiss];
+                    [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"no_gif_resource", nil)];
+                });
+                NSLog(@"jepg");
+            }
+        }];
+    });
+}
+
+-(void)gifToImagesArray:(NSData *)data invView:(DXLINVView *)invView{
+    
+    NSString *MYGIF_New_PATH =  [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"MyNEWGIF"];
+    
+    [[NSFileManager defaultManager] createDirectoryAtPath:MYGIF_New_PATH withIntermediateDirectories:YES attributes:nil error:nil];
+    
+    CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)data, NULL);
+    size_t count = CGImageSourceGetCount(source);
+    NSMutableArray *images = [NSMutableArray array];
+    for (size_t i = 0; i < count; i++) {
+        NSString *imgPath = [NSString stringWithFormat:@"%@/%ld.png", MYGIF_New_PATH, i];
+        CGImageRef image = CGImageSourceCreateImageAtIndex(source, i, NULL);
+        UIImage *img = [UIImage imageWithCGImage:image];
+        CGImageRelease(image);
+        @autoreleasepool {
+            NSData *imgData = [NSData rawDataImage:img];
+            [self deleteFileAtPath:imgPath];
+            [imgData writeToFile:imgPath atomically:YES];
+            [images addObject:imgPath];
+            img = nil;
+        }
+    }
+    CGFloat delayTime = 0.1;
+    CFDictionaryRef properties = CGImageSourceCopyPropertiesAtIndex(source, 0, NULL);
+    if (properties) {
+        CFDictionaryRef gifProperties;
+        BOOL result = CFDictionaryGetValueIfPresent(properties, kCGImagePropertyGIFDictionary, (const void **)&gifProperties);
+        if (result) {
+            const void *durationValue;
+            if (CFDictionaryGetValueIfPresent(gifProperties, kCGImagePropertyGIFUnclampedDelayTime, &durationValue)) {
+                delayTime = [(__bridge NSNumber *)durationValue doubleValue];
+                if (delayTime < 0) {
+                    if (CFDictionaryGetValueIfPresent(gifProperties, kCGImagePropertyGIFDelayTime, &durationValue)) {
+                        delayTime = [(__bridge NSNumber *)durationValue doubleValue];
+                    }
+                }
+            }
+        }
+    }
+    CFRelease(source);
+    
+    NSLog(@"gif转换得到的数组：%@",images);
+    [SVProgressHUD dismiss];
+    
+    [self imagesToVideoDelayTime:delayTime andImages:images invView:invView];
+}
+
+- (void)imagesToVideoDelayTime:(CGFloat)delayTime andImages:(NSArray *)imagesArray invView:(DXLINVView *)invView{
+    
+    [SVProgressHUD showProgress:0 status:@"处理中..."];
+        
+    NSString *MYGIF_New_PATH =  [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"MyNEWGIF"];
+    
+    [[NSFileManager defaultManager] createDirectoryAtPath:MYGIF_New_PATH withIntermediateDirectories:YES attributes:nil error:nil];
+    
+    NSString *outputPath = [NSString stringWithFormat:@"%@/shareGifToVidwo.mp4", MYGIF_New_PATH];
+    
+    UIImage *firstImg = [UIImage imageWithContentsOfFile:imagesArray.firstObject];
+    
+    NSMutableArray *imageMutableArray = [[NSMutableArray alloc] init];
+    for (NSString *eachPath in imagesArray) {
+        UIImage *eachImg = [UIImage imageWithContentsOfFile:eachPath];
+        [imageMutableArray addObject:eachImg];
+        
+    }
+    
+    if (imageMutableArray.count<4) {
+        NSArray *copyArry = imageMutableArray;
+        [imageMutableArray addObjectsFromArray:copyArry];
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        MediaComposition *compsition = [[MediaComposition alloc] init];
+        compsition.picTime = delayTime;
+        compsition.frameNumber = 5;
+        compsition.naturalSize = CGSizeMake(firstImg.size.width, firstImg.size.height);
+        compsition.outputPath = outputPath;
+        [compsition imagesVideoAnimationWith:imageMutableArray progress:^(float progress) {
+            NSLog(@"%f",progress);
+            if (progress>0) {
+                [SVProgressHUD showProgress:progress status:@"处理中..."];
+            }
+        } success:^(NSString * success) {
+            NSLog(@"%@",success);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                invView.isVideo = YES;
+                invView.videoUrl = [NSURL fileURLWithPath:outputPath];;
+                [SVProgressHUD dismiss];
+            });
+            
+
+        } failure:^(NSString * failure) {
+                            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismiss];
+            });
+        }];
+        
+    });
+}
+
+- (void)deleteFileAtPath:(NSString *)path {
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+    }
+}
 @end

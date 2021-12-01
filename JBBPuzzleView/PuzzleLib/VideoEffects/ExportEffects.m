@@ -839,7 +839,7 @@
     NSUserDefaults *userDefaultes = [NSUserDefaults standardUserDefaults];
     NSString *identifier = [NSString stringWithFormat:@"TrackID_%ld", (long)trackID];
     BOOL result = [[userDefaultes objectForKey:identifier] boolValue];
-    NSLog(@"shouldRightRotate90ByTrackID %@ : %@", identifier, result?@"Yes":@"No");
+    //NSLog(@"shouldRightRotate90ByTrackID %@ : %@", identifier, result?@"Yes":@"No");
     
     if (result)
     {

@@ -63,10 +63,26 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self.myModelCountCollectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
         [self collectionView:self.myModelCountCollectionView didSelectItemAtIndexPath:indexPath];
+        
+        
     });
     
     [self updateBiliBtnStatus:0];
+
 }
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (self.tcePuzzleView.manage) {
+            [self.tcePuzzleView updatePlayVideoDXLINVManageView];
+        }
+    });
+    
+}
+
+//从后台进前台记得也要重新播放
 
 - (void)initColorCollectionView{
     UICollectionViewFlowLayout *configLayout = [[UICollectionViewFlowLayout alloc]init];
@@ -301,7 +317,10 @@
         if (item.isVideo) {
             [assetVideoUrlArr addObject:item.videoUrl];
         } else {
-            [photoViewArray addObject:[self getImage:item]];// 获取展示图片
+            UIImage *newimage = [self getImage:item];
+            if (newimage){
+                [photoViewArray addObject:[self getImage:item]];// 获取展示图片
+            }
         }
     }
     

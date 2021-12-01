@@ -33,4 +33,7 @@
 //视图管理
 @property(nonatomic, strong) DXLINVManage * manage;
 
+//更新一下有视频播放的VIEW
+-(void)updatePlayVideoDXLINVManageView;
+
 @end

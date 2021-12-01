@@ -61,6 +61,11 @@
 		29F381792754E5D2009D9EDC /* PuzzleData.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F381712754E5D2009D9EDC /* PuzzleData.m */; };
 		29F3817A2754E5D2009D9EDC /* AVAsset+help.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F381762754E5D2009D9EDC /* AVAsset+help.m */; };
 		29F3817B2754E5D2009D9EDC /* CustomVideoCompositor.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F381772754E5D2009D9EDC /* CustomVideoCompositor.m */; };
+		29F381832755DDB3009D9EDC /* MediaComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F3817E2755DDB3009D9EDC /* MediaComposition.swift */; };
+		29F381842755DDB3009D9EDC /* MCConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F3817F2755DDB3009D9EDC /* MCConfig.swift */; };
+		29F381852755DDB3009D9EDC /* black.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 29F381802755DDB3009D9EDC /* black.mp4 */; };
+		29F381862755DDB3009D9EDC /* MediaAVComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F381812755DDB3009D9EDC /* MediaAVComposition.swift */; };
+		29F381872755DDB3009D9EDC /* AudiosComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F381822755DDB3009D9EDC /* AudiosComposition.swift */; };
 		FF349688EF0567E7EC2BF5D3 /* Pods_JBBPuzzleView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A1D93C267F0AC42CFA9EB8 /* Pods_JBBPuzzleView.framework */; };
 /* End PBXBuildFile section */
 
@@ -160,6 +165,11 @@
 		29F381762754E5D2009D9EDC /* AVAsset+help.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVAsset+help.m"; sourceTree = "<group>"; };
 		29F381772754E5D2009D9EDC /* CustomVideoCompositor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomVideoCompositor.m; sourceTree = "<group>"; };
 		29F3817C2754E68A009D9EDC /* PXKConstMarcro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXKConstMarcro.h; sourceTree = "<group>"; };
+		29F3817E2755DDB3009D9EDC /* MediaComposition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaComposition.swift; sourceTree = "<group>"; };
+		29F3817F2755DDB3009D9EDC /* MCConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCConfig.swift; sourceTree = "<group>"; };
+		29F381802755DDB3009D9EDC /* black.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = black.mp4; sourceTree = "<group>"; };
+		29F381812755DDB3009D9EDC /* MediaAVComposition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaAVComposition.swift; sourceTree = "<group>"; };
+		29F381822755DDB3009D9EDC /* AudiosComposition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudiosComposition.swift; sourceTree = "<group>"; };
 		53530ABE46BC7554E5D8AD21 /* Pods-JBBPuzzleView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JBBPuzzleView.release.xcconfig"; path = "Target Support Files/Pods-JBBPuzzleView/Pods-JBBPuzzleView.release.xcconfig"; sourceTree = "<group>"; };
 		61A1D93C267F0AC42CFA9EB8 /* Pods_JBBPuzzleView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JBBPuzzleView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC57396C71712CAC2B63FD9B /* Pods-JBBPuzzleView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JBBPuzzleView.debug.xcconfig"; path = "Target Support Files/Pods-JBBPuzzleView/Pods-JBBPuzzleView.debug.xcconfig"; sourceTree = "<group>"; };
@@ -276,6 +286,7 @@
 		29B39817274BA59300C6FAC7 /* PuzzleLib */ = {
 			isa = PBXGroup;
 			children = (
+				29F3817D2755DDB3009D9EDC /* 图片合成视频 */,
 				29F3817C2754E68A009D9EDC /* PXKConstMarcro.h */,
 				29F381732754E5D2009D9EDC /* CustomVideoCompositor */,
 				29F3816E2754E5D2009D9EDC /* SharedData */,
@@ -384,6 +395,18 @@
 			path = CustomVideoCompositor;
 			sourceTree = "<group>";
 		};
+		29F3817D2755DDB3009D9EDC /* 图片合成视频 */ = {
+			isa = PBXGroup;
+			children = (
+				29F3817E2755DDB3009D9EDC /* MediaComposition.swift */,
+				29F3817F2755DDB3009D9EDC /* MCConfig.swift */,
+				29F381802755DDB3009D9EDC /* black.mp4 */,
+				29F381812755DDB3009D9EDC /* MediaAVComposition.swift */,
+				29F381822755DDB3009D9EDC /* AudiosComposition.swift */,
+			);
+			path = "图片合成视频";
+			sourceTree = "<group>";
+		};
 		D3D6CD565AB67B0ED238F254 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -470,6 +493,7 @@
 				29F3815727548A7A009D9EDC /* YUVConversion.fsh in Resources */,
 				291DF2E8274E12820082B6DC /* AlbumTableViewCell.xib in Resources */,
 				29B39800274B95C700C6FAC7 /* Main.storyboard in Resources */,
+				29F381852755DDB3009D9EDC /* black.mp4 in Resources */,
 				29F3815927548A7A009D9EDC /* YUVConversion.vsh in Resources */,
 				291DF2B6274DDE600082B6DC /* CustomAlbumController.xib in Resources */,
 				291DF2ED274E200E0082B6DC /* PickerCell.xib in Resources */,
@@ -553,11 +577,15 @@
 				29F3813F27546DC7009D9EDC /* PBJVideoView.m in Sources */,
 				29F3817B2754E5D2009D9EDC /* CustomVideoCompositor.m in Sources */,
 				29B39808274B95D600C6FAC7 /* main.m in Sources */,
+				29F381862755DDB3009D9EDC /* MediaAVComposition.swift in Sources */,
 				29F3815127548A7A009D9EDC /* CustomVideoCompositing.m in Sources */,
 				291DF2D2274DE3610082B6DC /* UIView+HXExtension.m in Sources */,
 				29F3815227548A7A009D9EDC /* MFShaderHelper.m in Sources */,
 				29B39836274C832000C6FAC7 /* TcePuzzlePuzzleView.m in Sources */,
+				29F381832755DDB3009D9EDC /* MediaComposition.swift in Sources */,
+				29F381872755DDB3009D9EDC /* AudiosComposition.swift in Sources */,
 				29357A76274E69E000BD986D /* PostersCollageSingeToolView.m in Sources */,
+				29F381842755DDB3009D9EDC /* MCConfig.swift in Sources */,
 				291DF2B5274DDE600082B6DC /* CustomAlbumController.m in Sources */,
 				29F3816C2754E39A009D9EDC /* ExportEffects.m in Sources */,
 				29357A71274E5A0B00BD986D /* UIViewController+GifMakingUtils.m in Sources */,
@@ -732,6 +760,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.JBBPuzzleView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -765,6 +795,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.JBBPuzzleView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

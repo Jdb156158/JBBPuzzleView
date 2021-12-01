@@ -18,6 +18,14 @@
 
 - (void)setInvViews:(NSMutableArray *)invViews{
     _invViews = invViews;
+    
+    //先删除所有手势
+    for(DXLINVView * _view in _invViews){
+        for (int i =0; i<[[_view gestureRecognizers] count]; i++) {
+            [_view removeGestureRecognizer:[_view.gestureRecognizers firstObject]];
+        }
+    }
+    
     [self addGesture];
 }
 
