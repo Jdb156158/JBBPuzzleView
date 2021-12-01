@@ -50,6 +50,7 @@
     if (self = [super initWithFrame:frame])
     {
         self.cutterDxlinviewTag = -1;
+        _grpValue = 5;
         [self TcePuzzleInitPuzzleView];
     }
     return self;
@@ -121,6 +122,7 @@
 
 - (void)setTcePuzzleStyleIndex:(NSInteger)TcePuzzleStyleIndex
 {
+    _TcePuzzleStyleIndex = TcePuzzleStyleIndex;
     
     _TcePuzzleContentViewArray = [NSMutableArray array];
     
@@ -183,13 +185,13 @@
     
     
     _points = [TcePuzzleViewFrameAndPoint tceGetArrayWithQuantity:TcePuzzleStyleIndex];
-    self.TcePuzzleStyleRow = [TCESingle tceSingle].tceStyleRow;
-    self.grpValue = [TCESingle tceSingle].tceGra;
-    if (_points)
-    {
-        [self TcePuzzleResetAllView];
-        [self TcePuzzleResetStyle];
-    }
+//    self.TcePuzzleStyleRow = [TCESingle tceSingle].tceStyleRow;
+//    self.grpValue = [TCESingle tceSingle].tceGra;
+//    if (_points)
+//    {
+//        [self TcePuzzleResetAllView];
+//        [self TcePuzzleResetStyle];
+//    }
 }
 
 - (void)TcePuzzleResetStyle
@@ -205,77 +207,20 @@
         
         for (int j = 0; j<subPoints.count; j++)
         {
-            CGRect rect = CGRectZero;
-            UIBezierPath *path = nil;
-                        
+
             NSDictionary *subDict = [subPoints objectAtIndex:j];
             
-            rect = [self TcePuzzleRectWithArray:subDict[@"pointArray"] andSuperSize:superSize];
-            
-            NSArray *pointArray = [subDict objectForKey:@"pointArray"];
-            NSArray *gapArray = [subDict objectForKey:@"gap"];
-            
-            if (pointArray){//} && gapArray) {
-
-                path = [UIBezierPath bezierPath];
-                
-                if (pointArray.count > 2) {
-                    for(int i = 0; i < [pointArray count]; i++)
-                    {
-                        NSString *pointString = [pointArray objectAtIndex:i];
-                        NSString *gapString = [gapArray objectAtIndex:i];
-                        
-                        if (pointString){ //&& gapString) {
-                            
-                            CGPoint point = CGPointFromString(pointString);
-                            CGPoint gap = CGPointFromString(gapString);
-                            
-                            //外边距
-                            if (point.x == 0) {
-                                point.x += self.grpValue*0.5;
-                            }
-                            if (point.y == 0) {
-                                point.y += self.grpValue;
-                            }
-                            if (point.x == 720) {
-                                point.x -= self.grpValue*0.5;
-                            }
-                            if (point.y == 960){
-                                point.y -= self.grpValue;
-                            }
-                            
-                            //内边距
-                            if (self.grpValue) {
-                                point.x = point.x + (gap.x * self.grpValue);
-                                point.y = point.y + (gap.y * self.grpValue);
-                            }
-                            
-                            
-                            point = [TcePuzzlePuzzleView TcePuzzlePointScaleWithPoint:point scale:2.0f];
-                            point.x = (point.x)*self.frame.size.width/superSize.width -rect.origin.x;
-                            point.y = (point.y)*self.frame.size.height/superSize.height -rect.origin.y;
-                            
-                            
-                            
-                            if (i == 0) {
-                                [path moveToPoint:point];
-                            } else {
-                                [path addLineToPoint:point];
-                            }
-                        }
-                    }
-                } else
-                {
-                    [path moveToPoint:CGPointMake(0, 0)];
-                    [path addLineToPoint:CGPointMake(rect.size.width, 0)];
-                    [path addLineToPoint:CGPointMake(rect.size.width, rect.size.height)];
-                    [path addLineToPoint:CGPointMake(0, rect.size.height)];
-                }
-                [path closePath];
-            }
+            //当前格子位置和大小
+            CGRect rect = [self TcePuzzleRectWithArray:subDict[@"pointArray"] andSuperSize:superSize];
+ 
             if (j < self.TcePuzzleContentViewArray.count) {
                 DXLINVView *imageView = (DXLINVView *)self.TcePuzzleContentViewArray[j];
-                imageView.frame = rect;
+                NSLog(@"=====%f",rect.size.width);
+                
+                //根据风格来绘制位置
+                imageView.frame = [self cutterDXLINVViewRect:j  oldRect:rect];
+                
+                
                 if (imageView.originalImage == nil) {
                     imageView.isVideo = NO;
                     UIImage *defaultImage = [UIImage imageNamed:@"clearMark"];
@@ -296,6 +241,117 @@
 
             }
         }
+    }
+}
+
+- (CGRect)cutterDXLINVViewRect:(NSInteger)tagIdext oldRect:(CGRect)rect{
+    if (self.TcePuzzleStyleIndex == 2 && self.TcePuzzleStyleRow == 3) {
+        if (tagIdext == 0) {
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue, rect.size.width-self.grpValue*2, rect.size.height-self.grpValue-self.grpValue/2);
+        }else{
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue*2, rect.size.height-self.grpValue-self.grpValue/2);
+        }
+        
+    }else if(self.TcePuzzleStyleIndex == 3 && self.TcePuzzleStyleRow == 4){
+        if (tagIdext == 0) {
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue*2);
+        }else if(tagIdext == 1){
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }else{
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }
+    }else if(self.TcePuzzleStyleIndex == 4 && self.TcePuzzleStyleRow == 6){
+        if (tagIdext == 0) {
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue, rect.size.width-self.grpValue*2, rect.size.height-self.grpValue-self.grpValue/2);
+        }else if(tagIdext == 1){
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue, rect.size.height-self.grpValue-self.grpValue/2);
+        }else if(tagIdext == 2){
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue, rect.size.height-self.grpValue-self.grpValue/2);
+        }else{
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue*2, rect.size.height-self.grpValue-self.grpValue/2);
+        }
+    }else if(self.TcePuzzleStyleIndex == 5 && self.TcePuzzleStyleRow == 0){
+        if (tagIdext == 0) {
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }else if(tagIdext == 1){
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }else if(tagIdext == 2){
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue);
+        }else if(tagIdext == 3){
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }else{
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }
+    }else if(self.TcePuzzleStyleIndex == 6 && self.TcePuzzleStyleRow == 1){
+        if (tagIdext == 0) {
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }else if(tagIdext == 1){
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }else if(tagIdext == 2){
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue);
+        }else if(tagIdext == 3){
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue);
+        }else if(tagIdext == 4){
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }else{
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }
+    }else if(self.TcePuzzleStyleIndex == 7 && self.TcePuzzleStyleRow == 0){
+        if (tagIdext == 0) {
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }else if(tagIdext == 1){
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue, rect.size.width-self.grpValue, rect.size.height-self.grpValue-self.grpValue/2);
+        }else if(tagIdext == 2){
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }else if(tagIdext == 3){
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue*2, rect.size.height-self.grpValue);
+        }else if(tagIdext == 4){
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }else if(tagIdext == 5){
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue, rect.size.height-self.grpValue-self.grpValue/2);
+        }else{
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }
+    }else if(self.TcePuzzleStyleIndex == 8 && self.TcePuzzleStyleRow == 0){
+        if (tagIdext == 0) {
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }else if(tagIdext == 1){
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue, rect.size.width-self.grpValue, rect.size.height-self.grpValue-self.grpValue/2);
+        }else if(tagIdext == 2){
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }else if(tagIdext == 3){
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue);
+        }else if(tagIdext == 4){
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue);
+        }else if(tagIdext == 5){
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }else if(tagIdext == 6){
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue, rect.size.height-self.grpValue-self.grpValue/2);
+        }else{
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }
+    }else if(self.TcePuzzleStyleIndex == 9 && self.TcePuzzleStyleRow == 0){
+        if (tagIdext == 0) {
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }else if(tagIdext == 1){
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue, rect.size.width-self.grpValue, rect.size.height-self.grpValue-self.grpValue/2);
+        }else if(tagIdext == 2){
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }else if(tagIdext == 3){
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue);
+        }else if(tagIdext == 4){
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue, rect.size.height-self.grpValue);
+        }else if(tagIdext == 5){
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue);
+        }else if(tagIdext == 6){
+            return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }else if(tagIdext == 7){
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue, rect.size.height-self.grpValue-self.grpValue/2);
+        }else{
+            return CGRectMake(rect.origin.x+self.grpValue/2, rect.origin.y+self.grpValue/2, rect.size.width-self.grpValue-self.grpValue/2, rect.size.height-self.grpValue-self.grpValue/2);
+        }
+    }else{
+        return CGRectMake(rect.origin.x+self.grpValue, rect.origin.y+self.grpValue, rect.size.width-self.grpValue*2, rect.size.height-self.grpValue*2);
     }
 }
 

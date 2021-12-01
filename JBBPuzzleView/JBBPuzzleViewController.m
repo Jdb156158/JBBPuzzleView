@@ -119,7 +119,6 @@
     if (!_tcePuzzleView){
         _tcePuzzleView = [[TcePuzzlePuzzleView alloc] initWithFrame:CGRectMake(0, 0, self.canvasBgView.frame.size.width, self.canvasBgView.frame.size.height)];
         _tcePuzzleView.backgroundColor = [UIColor whiteColor];
-        _tcePuzzleView.grpValue = 5;
         [self.canvasBgView addSubview:_tcePuzzleView];
     }
     return _tcePuzzleView;
@@ -385,6 +384,9 @@
     }
     [[PuzzleData sharedInstance] setFrames:frames];
     [[PuzzleData sharedInstance] setCropFramesArray:cropViewFrames];
+    
+    //设置背景颜色
+    [[PuzzleData sharedInstance] setBgColor:self.tcePuzzleView.backgroundColor];
     
     // 获取相片视图
     [[PuzzleData sharedInstance] setPhotoViewArray:photoViewArray];
