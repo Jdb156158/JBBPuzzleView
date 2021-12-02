@@ -270,6 +270,8 @@
     }];
     
     [self playDemoVideo:[url absoluteString] withinVideoPlayerController:videoPlayerController];
+    
+    self.videoContentViewTransform = self.videoContentView.transform;
 }
 
 - (void)playDemoVideo:(NSString*)inputVideoPath withinVideoPlayerController:(PBJVideoPlayerController*)videoPlayerController

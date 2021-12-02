@@ -396,8 +396,8 @@
 
             // 原框大小除去伸缩比
             CGFloat cropRectScal = videoRect.size.width/videoOriginalRect.size.width;// 视频视图显示大小除去原始大小得到伸缩比
-            CGFloat cropRectX = fabs(videoRect.origin.x)/cropRectScal*1.5;
-            CGFloat cropRectY = fabs(videoRect.origin.y)/cropRectScal*1.5;
+            CGFloat cropRectX = fabs(videoRect.origin.x)/cropRectScal*2;
+            CGFloat cropRectY = fabs(videoRect.origin.y)/cropRectScal*2;
             
             CGFloat cropRectW = 0.0;
             CGFloat cropRectH = 0.0;

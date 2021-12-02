@@ -30,6 +30,7 @@ typedef NS_ENUM (int,INVViewtatus) {
 
 @property (nonatomic, strong) PBJVideoPlayerController *videoPlayerController;
 @property (nonatomic, strong) UIView *videoContentView;
+@property(nonatomic) CGAffineTransform videoContentViewTransform;
 @property (nonatomic, assign) BOOL isVideo;
 @property (nonatomic, assign) CGRect videoVideOriginalRect;
 

@@ -9,7 +9,6 @@
 #import "DXLINVManage.h"
 
 @interface DXLINVManage()<UIGestureRecognizerDelegate,DXLINVViewDelegate>
-
 @end
 
 
@@ -115,8 +114,13 @@
     CGFloat scale=pinch.scale;
     NSLog(@"scale-----%f",scale);
     if (invView.isVideo) {
-        invView.videoContentView.transform=CGAffineTransformScale(invView.videoContentView.transform, scale, scale);
-        NSLog(@"videoContentView-------x:%f,y:%f,w:%f,h:%f",invView.videoContentView.frame.origin.x,invView.videoContentView.frame.origin.y,invView.videoContentView.frame.size.width,invView.videoContentView.frame.size.height);
+        if (scale<1.0 && (invView.videoContentView.frame.origin.x>0 || invView.videoContentView.frame.origin.y>0) ) {
+            invView.videoContentView.transform = invView.videoContentViewTransform;
+        }else{
+            invView.videoContentView.transform = CGAffineTransformScale(invView.videoContentView.transform, scale, scale);
+            NSLog(@"videoContentView-------x:%f,y:%f,w:%f,h:%f",invView.videoContentView.frame.origin.x,invView.videoContentView.frame.origin.y,invView.videoContentView.frame.size.width,invView.videoContentView.frame.size.height);
+        }
+        
     } else {
         invView.imageView.transform=CGAffineTransformScale(invView.imageView.transform, scale, scale);
     }
@@ -130,11 +134,12 @@
 }
 
 -(void)pan:(UIPanGestureRecognizer*)pan{
-    //    CGPoint transP=[pan locationInView:self.view];
-    //    self.center=transP;
+
+        
     //如果出现复制对象。原view不发生任何变化
     DXLINVView * invView = (DXLINVView*)pan.view;
     UIGestureRecognizerState state = pan.state;
+    
     
     CGPoint loc = [pan locationInView:invView];
     CGPoint location = [pan locationInView:invView.superview];
@@ -147,17 +152,9 @@
             }
             _snapshot.parentView = invView;
             [invView.superview addSubview:_snapshot];
-//            _snapshot.bounds = invView.imageView.bounds;
             _snapshot.bounds = invView.bounds;// 用显示视图的大小
             _snapshot.center = location;
-            // 按下的瞬间执行动画
-//            [UIView animateWithDuration:0.25 animations:^{
-//
-//                
-//            } completion:^(BOOL finished) {
-//                
-//                
-//            }];
+
         }
     }
     if(_snapshot){
@@ -190,22 +187,29 @@
         }
         return;
     }
-    
+
     [invView setInvViewtatus:INVViewtatusNone];
     CGPoint transP=[pan translationInView:invView];
     if (invView.isVideo) {
-        //不能超过1/4
-        if(transP.x >0 && invView.videoContentView.frame.origin.x >= invView.frame.size.width*3/4.f){
+        //不能超过边界
+        if(transP.x >0 && invView.videoContentView.frame.origin.x >= 0){
+            transP.x = 0;
+            invView.videoContentView.center = CGPointMake(invView.videoContentView.center.x+transP.x, invView.videoContentView.center.y+transP.y);
+        }else if(transP.x < 0 && invView.videoContentView.frame.origin.x<0){
+            transP.x = 0;
+            invView.videoContentView.center = CGPointMake(invView.videoContentView.center.x+transP.x, invView.videoContentView.center.y+transP.y);
+        }else if(transP.y > 0 && invView.videoContentView.frame.origin.y >= 0){
+            transP.y = 0;
+            invView.videoContentView.frame = CGRectMake(invView.videoContentView.frame.origin.x, 0, invView.videoContentView.frame.size.width, invView.videoContentView.frame.size.height);
             return;
-        }else if(transP.x < 0 && invView.videoContentView.frame.origin.x+ invView.videoContentView.frame.size.width <= invView.frame.size.width/4.f){
+        }else if(transP.y < 0 && invView.videoContentView.frame.origin.y+ invView.videoContentView.frame.size.height<= invView.frame.size.height){
+            invView.videoContentView.frame = CGRectMake(invView.videoContentView.frame.origin.x, -(invView.videoContentView.frame.size.height-invView.frame.size.height), invView.videoContentView.frame.size.width, invView.videoContentView.frame.size.height);
             return;
-        }else if(transP.y > 0 && invView.videoContentView.frame.origin.y >= invView.frame.size.height*3/4.f){
-            return;
-        }else if(transP.y < 0 && invView.videoContentView.frame.origin.y+ invView.videoContentView.frame.size.height<= invView.frame.size.height/4.f){
-            return;
+        }else{
+            invView.videoContentView.center = CGPointMake(invView.videoContentView.center.x+transP.x, invView.videoContentView.center.y+transP.y);
         }
+
         
-        invView.videoContentView.center = CGPointMake(invView.videoContentView.center.x+transP.x, invView.videoContentView.center.y+transP.y);
         NSLog(@"videoContentView-------x:%f,y:%f,w:%f,h:%f",invView.videoContentView.frame.origin.x,invView.videoContentView.frame.origin.y,invView.videoContentView.frame.size.width,invView.videoContentView.frame.size.height);
 
     } else {
@@ -219,14 +223,13 @@
         }else if(transP.y < 0 && invView.imageView.frame.origin.y+ invView.imageView.frame.size.height<= invView.frame.size.height/4.f){
             return;
         }
-        
+
         invView.imageView.center = CGPointMake(invView.imageView.center.x+transP.x, invView.imageView.center.y+transP.y);
     }
 
 
-//    invView.imageView.transform=CGAffineTransformTranslate(invView.imageView.transform, transP.x, transP.y);
     [pan setTranslation:CGPointZero inView:invView];
-    
+
 }
 
 -(void)tap:(UITapGestureRecognizer*)tap{
