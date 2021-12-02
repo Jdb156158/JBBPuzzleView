@@ -19,15 +19,15 @@
 ,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *canvasBgView;
-@property (weak, nonatomic) IBOutlet UICollectionView *myModelCountCollectionView;
-@property (weak, nonatomic) IBOutlet UICollectionView *myColorCollectionView;
+@property (weak, nonatomic) IBOutlet UICollectionView *myModelCountCollectionView;//风格
+@property (weak, nonatomic) IBOutlet UICollectionView *myColorCollectionView;//颜色
+@property (weak, nonatomic) IBOutlet UICollectionView *myScaleCollectionView;//画布比例
 @property (weak, nonatomic) IBOutlet UISlider *borderPxSlider;
-@property (weak, nonatomic) IBOutlet UIButton *Scale1bi1Btn;
-@property (weak, nonatomic) IBOutlet UIButton *Scale16bi9Btn;
-@property (weak, nonatomic) IBOutlet UIButton *Scale9bi16Btn;
+
 @property (nonatomic, strong) TcePuzzlePuzzleView *tcePuzzleView;
 @property (nonatomic, strong) NSMutableArray *modelCountImages;
 @property (nonatomic, strong) NSMutableArray *colorsArray;
+@property (nonatomic, strong) NSMutableArray *scaleArray;
 
 @property (nonatomic, assign) NSInteger puzzleStyleIndex;
 @property (nonatomic, assign) NSInteger puzzleStyleRow;
@@ -50,13 +50,28 @@
     ]];
     
     self.colorsArray = [[NSMutableArray alloc] initWithArray:@[
-        @"#FFFFFF",@"#2B2B2B",@"#FA5150",@"#FEC200",@"#07C160",@"#10ADFF",@"#6467EF",@"#FF0000",@"#FF4500",@"#FFD700",@"#40E0D0",@"#4682B4",@"#6495ED",@"#483D8B",@"#9400D3",
+        @"#282A2D",@"#FFFFFF",@"#FA5150",@"#FEC200",@"#07C160",@"#10ADFF",@"#6467EF",@"#FF0000",@"#FF4500",@"#FFD700",@"#40E0D0",@"#4682B4",@"#6495ED",@"#483D8B",@"#9400D3",
         @"#8B008B",@"#C71585",@"#FF1493",@"#DC143C",@"#FFB6C1",@"#4B0082"
+    ]];
+    
+    self.scaleArray = [[NSMutableArray alloc] initWithArray:@[
+        @{@"default":@"GIF拼图画布1：1",@"selectimage":@"GIF拼图画布选中1：1"},
+        @{@"default":@"GIF拼图画布16：9",@"selectimage":@"GIF拼图画布选中16：9"},
+        @{@"default":@"GIF拼图画布9：16",@"selectimage":@"GIF拼图画布选中9：16"},
+        @{@"default":@"GIF拼图画布1：2",@"selectimage":@"GIF拼图画布选中1：2"},
+        @{@"default":@"GIF拼图画布2：1",@"selectimage":@"GIF拼图画布选中2：1"},
+        @{@"default":@"GIF拼图画布2：3",@"selectimage":@"GIF拼图画布选中2：3"},
+        @{@"default":@"GIF拼图画布3：2",@"selectimage":@"GIF拼图画布选中3：2"},
+        @{@"default":@"GIF拼图画布3：4",@"selectimage":@"GIF拼图画布选中3：4"},
+        @{@"default":@"GIF拼图画布4：3",@"selectimage":@"GIF拼图画布选中4：3"},
+        @{@"default":@"GIF拼图画布4：5",@"selectimage":@"GIF拼图画布选中4：5"},
     ]];
         
     [self initColorCollectionView];
     
     [self initPuzzleSytleCollectionView];
+    
+    [self initScaleCollectionView];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //默认选中第一行
@@ -65,10 +80,14 @@
         [self collectionView:self.myModelCountCollectionView didSelectItemAtIndexPath:indexPath];
         
         
+        [self.myColorCollectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+        [self collectionView:self.myColorCollectionView didSelectItemAtIndexPath:indexPath];
+        
+        [self.myScaleCollectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+        [self collectionView:self.myScaleCollectionView didSelectItemAtIndexPath:indexPath];
+        
     });
     
-    [self updateBiliBtnStatus:0];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -86,7 +105,7 @@
 
 - (void)initColorCollectionView{
     UICollectionViewFlowLayout *configLayout = [[UICollectionViewFlowLayout alloc]init];
-    configLayout.itemSize = CGSizeMake(60, 30);
+    configLayout.itemSize = CGSizeMake(30, 30);
     configLayout.minimumLineSpacing = 10 ;
     configLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     _myColorCollectionView.collectionViewLayout = configLayout;
@@ -101,11 +120,12 @@
 
 - (void)initPuzzleSytleCollectionView{
     UICollectionViewFlowLayout *configLayout = [[UICollectionViewFlowLayout alloc]init];
-    configLayout.itemSize = CGSizeMake(60, 60);
-    configLayout.minimumLineSpacing = 10 ;
+    configLayout.itemSize = CGSizeMake(50, 50);
+    configLayout.minimumLineSpacing = 15 ;
+    configLayout.sectionInset = UIEdgeInsetsMake(15, 15, 15, 15);
     configLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     _myModelCountCollectionView.collectionViewLayout = configLayout;
-    _myModelCountCollectionView.backgroundColor = [UIColor clearColor];
+    _myModelCountCollectionView.backgroundColor = [UIColor colorWithHexString:@"#181A1E"];
     _myModelCountCollectionView.delegate = self;
     _myModelCountCollectionView.dataSource = self;
     _myModelCountCollectionView.allowsMultipleSelection = NO;
@@ -114,11 +134,27 @@
     _myModelCountCollectionView.tag = 2;
 }
 
+- (void)initScaleCollectionView{
+    UICollectionViewFlowLayout *configLayout = [[UICollectionViewFlowLayout alloc]init];
+    configLayout.itemSize = CGSizeMake(30, 30);
+    configLayout.minimumLineSpacing = 15 ;
+    configLayout.sectionInset = UIEdgeInsetsMake(15, 0, 15, 15);
+    configLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    _myScaleCollectionView.collectionViewLayout = configLayout;
+    _myScaleCollectionView.backgroundColor = [UIColor clearColor];
+    _myScaleCollectionView.delegate = self;
+    _myScaleCollectionView.dataSource = self;
+    _myScaleCollectionView.allowsMultipleSelection = NO;
+    _myScaleCollectionView.showsHorizontalScrollIndicator = NO;
+    [_myScaleCollectionView registerNib:[UINib nibWithNibName:@"PuzzleStyleViewCell" bundle:nil] forCellWithReuseIdentifier:@"PuzzleStyleViewCell"];
+    _myScaleCollectionView.tag = 3;
+}
+
 - (TcePuzzlePuzzleView *)tcePuzzleView
 {
     if (!_tcePuzzleView){
         _tcePuzzleView = [[TcePuzzlePuzzleView alloc] initWithFrame:CGRectMake(0, 0, self.canvasBgView.frame.size.width, self.canvasBgView.frame.size.height)];
-        _tcePuzzleView.backgroundColor = [UIColor whiteColor];
+        _tcePuzzleView.backgroundColor = [UIColor colorWithHexString:@"#282A2D"];
         [self.canvasBgView addSubview:_tcePuzzleView];
     }
     return _tcePuzzleView;
@@ -130,8 +166,10 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     if (collectionView.tag == 1) {
         return self.colorsArray.count;
-    }else{
+    }else if(collectionView.tag == 2){
         return self.modelCountImages.count;
+    }else{
+        return self.scaleArray.count;
     }
    
 }
@@ -141,9 +179,14 @@
         NSString *colorName = self.colorsArray[indexPath.item];
         [cell setColorStr:colorName];
         return cell;
-    }else{
+    }else if(collectionView.tag == 2){
         PuzzleStyleViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PuzzleStyleViewCell" forIndexPath:indexPath];
         NSDictionary *dict = self.modelCountImages[indexPath.item];
+        cell.dict = dict;
+        return cell;
+    }else{
+        PuzzleStyleViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PuzzleStyleViewCell" forIndexPath:indexPath];
+        NSDictionary *dict = self.scaleArray[indexPath.item];
         cell.dict = dict;
         return cell;
     }
@@ -154,7 +197,7 @@
     if (collectionView.tag == 1) {
         NSString *colorName = self.colorsArray[indexPath.item];
         _tcePuzzleView.backgroundColor = [UIColor colorWithHexString:colorName];
-    }else{
+    }else if(collectionView.tag == 2){
         if (indexPath.item == 0) {
             // 重载界面
             [self.tcePuzzleView setTcePuzzleStyleIndex:2];
@@ -212,6 +255,42 @@
             self.puzzleStyleIndex = 9;
             self.puzzleStyleRow = 0;
         }
+    }else{
+        //比例
+        if (indexPath.item == 0) {
+            //1:1
+            _tcePuzzleView.frame = CGRectMake(0, 0, self.canvasBgView.frame.size.width, self.canvasBgView.frame.size.height);
+        }else if(indexPath.item == 1){
+            //16:9
+            _tcePuzzleView.frame = CGRectMake(0, self.canvasBgView.frame.size.height/2-(self.canvasBgView.frame.size.width*9/16)/2, self.canvasBgView.frame.size.width, self.canvasBgView.frame.size.width*9/16);
+        }else if(indexPath.item == 2){
+            //9:16
+            _tcePuzzleView.frame = CGRectMake(self.canvasBgView.frame.size.width/2-(self.canvasBgView.frame.size.height*9/16)/2, 0, self.canvasBgView.frame.size.height*9/16, self.canvasBgView.frame.size.height);
+        }else if(indexPath.item == 3){
+            //1:2
+            _tcePuzzleView.frame = CGRectMake(self.canvasBgView.frame.size.width/2-(self.canvasBgView.frame.size.height*1/2)/2, 0, self.canvasBgView.frame.size.height*1/2, self.canvasBgView.frame.size.height);
+        }else if(indexPath.item == 4){
+            //2:1
+            _tcePuzzleView.frame = CGRectMake(0, self.canvasBgView.frame.size.height/2-(self.canvasBgView.frame.size.width*1/2)/2, self.canvasBgView.frame.size.width, self.canvasBgView.frame.size.width*1/2);
+        }else if(indexPath.item == 5){
+            //2:3
+            _tcePuzzleView.frame = CGRectMake(self.canvasBgView.frame.size.width/2-(self.canvasBgView.frame.size.height*2/3)/2, 0, self.canvasBgView.frame.size.height*2/3, self.canvasBgView.frame.size.height);
+        }else if(indexPath.item == 6){
+            //3:2
+            _tcePuzzleView.frame = CGRectMake(0, self.canvasBgView.frame.size.height/2-(self.canvasBgView.frame.size.width*2/3)/2, self.canvasBgView.frame.size.width, self.canvasBgView.frame.size.width*2/3);
+        }else if(indexPath.item == 7){
+            //3:4
+            _tcePuzzleView.frame = CGRectMake(self.canvasBgView.frame.size.width/2-(self.canvasBgView.frame.size.height*3/4)/2, 0, self.canvasBgView.frame.size.height*3/4, self.canvasBgView.frame.size.height);
+        }else if(indexPath.item == 8){
+            //4:3
+            _tcePuzzleView.frame = CGRectMake(0, self.canvasBgView.frame.size.height/2-(self.canvasBgView.frame.size.width*3/4)/2, self.canvasBgView.frame.size.width, self.canvasBgView.frame.size.width*3/4);
+        }else if(indexPath.item == 9){
+            //4:5
+            _tcePuzzleView.frame = CGRectMake(self.canvasBgView.frame.size.width/2-(self.canvasBgView.frame.size.height*4/5)/2, 0, self.canvasBgView.frame.size.height*4/5, self.canvasBgView.frame.size.height);
+        }
+        // 重载界面
+        [self.tcePuzzleView setTcePuzzleStyleIndex:self.puzzleStyleIndex];
+        [self.tcePuzzleView setTcePuzzleStyleRow:self.puzzleStyleRow];
     }
     
 }
@@ -227,58 +306,6 @@
     NSLog(@"==滑块滑动结束==");
     self.borderPxSlider.value = sender.value;
     self.tcePuzzleView.grpValue = sender.value;
-}
-
-
-#pragma mark - 比例调整
-
-- (IBAction)clickScale1bi1Btn:(id)sender {
-    
-    _tcePuzzleView.frame = CGRectMake(0, 0, self.canvasBgView.frame.size.width, self.canvasBgView.frame.size.height);
-    
-    
-    // 重载界面
-    [self.tcePuzzleView setTcePuzzleStyleIndex:self.puzzleStyleIndex];
-    [self.tcePuzzleView setTcePuzzleStyleRow:self.puzzleStyleRow];
-    
-    [self updateBiliBtnStatus:0];
-}
-
-- (IBAction)clickScale16bi9Btn:(id)sender {
-    
-    _tcePuzzleView.frame = CGRectMake(0, self.canvasBgView.frame.size.height/2-(self.canvasBgView.frame.size.width*9/16)/2, self.canvasBgView.frame.size.width, self.canvasBgView.frame.size.width*9/16);
-    
-    
-    // 重载界面
-    [self.tcePuzzleView setTcePuzzleStyleIndex:self.puzzleStyleIndex];
-    [self.tcePuzzleView setTcePuzzleStyleRow:self.puzzleStyleRow];
-    
-    [self updateBiliBtnStatus:1];
-}
-
-- (IBAction)clickScale9bi16Btn:(id)sender {
-    
-    _tcePuzzleView.frame = CGRectMake(self.canvasBgView.frame.size.width/2-(self.canvasBgView.frame.size.height*9/16)/2, 0, self.canvasBgView.frame.size.height*9/16, self.canvasBgView.frame.size.height);
-    
-    
-    // 重载界面
-    [self.tcePuzzleView setTcePuzzleStyleIndex:self.puzzleStyleIndex];
-    [self.tcePuzzleView setTcePuzzleStyleRow:self.puzzleStyleRow];
-    
-    [self updateBiliBtnStatus:2];
-        
-}
-
-- (void)updateBiliBtnStatus:(NSInteger)index{
-    
-    self.Scale1bi1Btn.layer.borderWidth = index==0?1:0;
-    self.Scale1bi1Btn.layer.borderColor = index==0?[UIColor whiteColor].CGColor:[UIColor clearColor].CGColor;
-    
-    self.Scale16bi9Btn.layer.borderWidth = index==1?1:0;
-    self.Scale16bi9Btn.layer.borderColor = index==1?[UIColor whiteColor].CGColor:[UIColor clearColor].CGColor;
-    
-    self.Scale9bi16Btn.layer.borderWidth = index==2?1:0;
-    self.Scale9bi16Btn.layer.borderColor = index==2?[UIColor whiteColor].CGColor:[UIColor clearColor].CGColor;
 }
 
 - (IBAction)clickSaveBtn:(id)sender {

@@ -234,6 +234,7 @@
 		29B397F4274B95C700C6FAC7 /* JBBPuzzleView */ = {
 			isa = PBXGroup;
 			children = (
+				29BABA6027585EC800D94088 /* View */,
 				29357A72274E69C300BD986D /* otherView */,
 				291DF2B1274DDE330082B6DC /* CustomAblum */,
 				29B39817274BA59300C6FAC7 /* PuzzleLib */,
@@ -242,12 +243,6 @@
 				29B397F6274B95C700C6FAC7 /* AppDelegate.m */,
 				291DF2E1274DE9950082B6DC /* GIFMakingNaviViewController.h */,
 				291DF2E2274DE9950082B6DC /* GIFMakingNaviViewController.m */,
-				29B39837274C935C00C6FAC7 /* PuzzleStyleViewCell.h */,
-				29B39838274C935C00C6FAC7 /* PuzzleStyleViewCell.m */,
-				29B39839274C935C00C6FAC7 /* PuzzleStyleViewCell.xib */,
-				29B3983C274CA5E500C6FAC7 /* PuzzleBgColorViewCell.h */,
-				29B3983D274CA5E500C6FAC7 /* PuzzleBgColorViewCell.m */,
-				29B3983E274CA5E500C6FAC7 /* PuzzleBgColorViewCell.xib */,
 				29B3980E274B9A2400C6FAC7 /* JBBPuzzleViewController.h */,
 				29B3980F274B9A2400C6FAC7 /* JBBPuzzleViewController.m */,
 				29B39810274B9A2400C6FAC7 /* JBBPuzzleViewController.xib */,
@@ -304,6 +299,19 @@
 				29B39818274BA71400C6FAC7 /* TcePuzzleViewFrameAndPoint.m */,
 			);
 			path = PuzzleLib;
+			sourceTree = "<group>";
+		};
+		29BABA6027585EC800D94088 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				29B39837274C935C00C6FAC7 /* PuzzleStyleViewCell.h */,
+				29B39838274C935C00C6FAC7 /* PuzzleStyleViewCell.m */,
+				29B39839274C935C00C6FAC7 /* PuzzleStyleViewCell.xib */,
+				29B3983C274CA5E500C6FAC7 /* PuzzleBgColorViewCell.h */,
+				29B3983D274CA5E500C6FAC7 /* PuzzleBgColorViewCell.m */,
+				29B3983E274CA5E500C6FAC7 /* PuzzleBgColorViewCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		29F3813827546DC6009D9EDC /* VideoPlay */ = {
