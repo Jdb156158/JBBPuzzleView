@@ -732,7 +732,7 @@
     // Delete old file
     unlink([exportPath UTF8String]);
     
-    _exportSession = [AVAssetExportSession exportSessionWithAsset:composition presetName:AVAssetExportPreset1280x720];//AVAssetExportPresetMediumQuality AVAssetExportPresetHighestQuality
+    _exportSession = [AVAssetExportSession exportSessionWithAsset:composition presetName:AVAssetExportPresetHighestQuality];//AVAssetExportPresetMediumQuality AVAssetExportPresetHighestQuality
     _exportSession.outputURL = exportURL;
     _exportSession.outputFileType = AVFileTypeMPEG4;
     _exportSession.shouldOptimizeForNetworkUse = YES;

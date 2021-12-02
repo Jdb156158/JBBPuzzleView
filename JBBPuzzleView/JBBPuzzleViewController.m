@@ -365,8 +365,8 @@
     // frame
     // superSizeOriginal
     //画布的大小
-    CGSize superSizeOriginal = CGSizeMake(self.tcePuzzleView.frame.size.width, self.tcePuzzleView.frame.size.height);
-    CGSize superSize = CGSizeMake(self.tcePuzzleView.frame.size.width, self.tcePuzzleView.frame.size.height);
+    CGSize superSizeOriginal = CGSizeMake(self.tcePuzzleView.frame.size.width*2, self.tcePuzzleView.frame.size.height*2);
+    CGSize superSize = CGSizeMake(self.tcePuzzleView.frame.size.width*2, self.tcePuzzleView.frame.size.height*2);
     superSize = [self sizeScaleWithSize:superSize scale:2.0f];
 
     [[PuzzleData sharedInstance] setSuperFrame:superSizeOriginal];
