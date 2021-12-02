@@ -88,6 +88,9 @@
         
     });
     
+    UIApplication *app = [UIApplication sharedApplication];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shitu_jiangyaoxianshi_houtai_jin_qiantai) name:UIApplicationWillEnterForegroundNotification object:app];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -101,7 +104,16 @@
     
 }
 
+
+#pragma mark - /** 后台进前台 */
 //从后台进前台记得也要重新播放
+-(void) shitu_jiangyaoxianshi_houtai_jin_qiantai {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (self.tcePuzzleView.manage) {
+            [self.tcePuzzleView updatePlayVideoDXLINVManageView];
+        }
+    });
+}
 
 - (void)initColorCollectionView{
     UICollectionViewFlowLayout *configLayout = [[UICollectionViewFlowLayout alloc]init];
@@ -352,8 +364,9 @@
     
     // frame
     // superSizeOriginal
-    CGSize superSizeOriginal = CGSizeMake(960, 960);
-    CGSize superSize = CGSizeMake(960, 960);
+    //画布的大小
+    CGSize superSizeOriginal = CGSizeMake(self.tcePuzzleView.frame.size.width, self.tcePuzzleView.frame.size.height);
+    CGSize superSize = CGSizeMake(self.tcePuzzleView.frame.size.width, self.tcePuzzleView.frame.size.height);
     superSize = [self sizeScaleWithSize:superSize scale:2.0f];
 
     [[PuzzleData sharedInstance] setSuperFrame:superSizeOriginal];

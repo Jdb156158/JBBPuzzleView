@@ -159,6 +159,7 @@
 
 //            CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage,CGRectMake(0,0,width,height));
 
+            CIImage *newimage = [CIImage imageWithCGImage:imageRef];
             
             [imageRefArray addObject:(__bridge id)(imageRef)];
         }
@@ -233,6 +234,8 @@
         CGRect cropRect = CGRectMake(cropFrame.origin.x, cropFrame.origin.y, cropFrame.size.width, cropFrame.size.height);
 
         CGImageRef imageRef = CGImageCreateWithImageInRect((CGImageRef)imageRefArray[i], cropRect);
+        
+        CIImage *newimage = [CIImage imageWithCGImage:imageRef];
         
         CGRect resultRect = CGRectMake(CGRectGetMinX(frame) + fabs((CGRectGetWidth(frame) - width)/2), CGRectGetMinY(frame) + fabs((CGRectGetHeight(frame) - height)/2), width, height);
         CGContextDrawImage(gc, resultRect, imageRef);

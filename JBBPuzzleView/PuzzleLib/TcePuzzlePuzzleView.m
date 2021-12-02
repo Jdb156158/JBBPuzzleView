@@ -92,10 +92,10 @@
     [self addSubview:_TcePuzzleEightView];
     [self addSubview:_TcePuzzleNineView];
     
-    self.manage = [[DXLINVManage alloc]init];
-    self.manage.backgroundColor = [UIColor clearColor];
-    [self addSubview:self.manage];
-    self.manage.delegate = self;
+//    self.manage = [[DXLINVManage alloc]init];
+//    self.manage.backgroundColor = [UIColor clearColor];
+//    [self addSubview:self.manage];
+//    self.manage.delegate = self;
 }
 
 - (void)TcePuzzleResetAllView
@@ -180,18 +180,17 @@
         [_TcePuzzleContentViewArray addObject:_TcePuzzleNineView];
     }
     
+    [self.manage removeFromSuperview];
+    self.manage = [[DXLINVManage alloc]init];
+    self.manage.backgroundColor = [UIColor clearColor];
+    [self addSubview:self.manage];
+    self.manage.delegate = self;
     [self.manage.invViews removeAllObjects];
     [self.manage setInvViews:_TcePuzzleContentViewArray];
     
     
     _points = [TcePuzzleViewFrameAndPoint tceGetArrayWithQuantity:TcePuzzleStyleIndex];
-//    self.TcePuzzleStyleRow = [TCESingle tceSingle].tceStyleRow;
-//    self.grpValue = [TCESingle tceSingle].tceGra;
-//    if (_points)
-//    {
-//        [self TcePuzzleResetAllView];
-//        [self TcePuzzleResetStyle];
-//    }
+
 }
 
 - (void)TcePuzzleResetStyle
@@ -636,7 +635,7 @@
     
     [[NSFileManager defaultManager] createDirectoryAtPath:MYGIF_New_PATH withIntermediateDirectories:YES attributes:nil error:nil];
     
-    NSString *outputPath = [NSString stringWithFormat:@"%@/shareGifToVidwo.mp4", MYGIF_New_PATH];
+    NSString *outputPath = [NSString stringWithFormat:@"%@/shareGifToVidwo-%ld.mp4", MYGIF_New_PATH,(long)invView.tag];
     
     UIImage *firstImg = [UIImage imageWithContentsOfFile:imagesArray.firstObject];
     
