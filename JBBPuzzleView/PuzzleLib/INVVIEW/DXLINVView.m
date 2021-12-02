@@ -13,6 +13,7 @@
 {
      UIView       *bordView ;//边界view
      UIButton     *changePicBtn ;//边界view
+    UIButton     *addPicBtn ;//添加
 }
 @end
 
@@ -48,6 +49,20 @@
     changePicBtn.hidden = YES;
     [changePicBtn addTarget:self action:@selector(changePic:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:changePicBtn];
+    
+    // 添加按钮
+    addPicBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 35, 35)];
+    addPicBtn.center = self.videoContentView.center;
+    addPicBtn.backgroundColor = [UIColor clearColor];
+    addPicBtn.hidden = NO;
+    [addPicBtn setImage:[UIImage imageNamed:@"编辑加"] forState:UIControlStateNormal];
+    [addPicBtn addTarget:self action:@selector(changePic:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:addPicBtn];
+    [addPicBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self);
+        make.width.equalTo(@35);
+        make.height.equalTo(@35);
+    }];
 
 }
 
@@ -190,6 +205,9 @@
 }
 
 - (void)setVideoUrl:(NSURL *)videoUrl{
+    
+    addPicBtn.hidden = YES;
+    
     _videoUrl = videoUrl;
     
     dispatch_async(dispatch_get_main_queue(), ^{
