@@ -195,13 +195,13 @@ static NSString * const PBJVideoPlayerControllerPlayerKeepUpKey = @"playbackLike
                 return;
             }
             // videoComposition
-            self.videoComposition = [self createVideoCompositionWithAsset:self->_asset];
-            self.videoComposition.customVideoCompositorClass = [CustomVideoCompositing class];
+//            self.videoComposition = [self createVideoCompositionWithAsset:self->_asset];
+//            self.videoComposition.customVideoCompositorClass = [CustomVideoCompositing class];
             
             // setup player
             AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:self->_asset];
             [self _setPlayerItem:playerItem];
-            self->_playerItem.videoComposition = self.videoComposition;
+//            self->_playerItem.videoComposition = self.videoComposition;
         }];
     }];
 }

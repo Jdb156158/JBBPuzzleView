@@ -640,15 +640,19 @@
     UIImage *firstImg = [UIImage imageWithContentsOfFile:imagesArray.firstObject];
     
     NSMutableArray *imageMutableArray = [[NSMutableArray alloc] init];
-    for (NSString *eachPath in imagesArray) {
-        UIImage *eachImg = [UIImage imageWithContentsOfFile:eachPath];
-        [imageMutableArray addObject:eachImg];
-        
-    }
     
     if (imageMutableArray.count<4) {
-        NSArray *copyArry = imageMutableArray;
-        [imageMutableArray addObjectsFromArray:copyArry];
+        for (int i= 0; i<5; i++) {
+            for (NSString *eachPath in imagesArray) {
+                UIImage *eachImg = [UIImage imageWithContentsOfFile:eachPath];
+                [imageMutableArray addObject:eachImg];
+            }
+        }
+    }else{
+        for (NSString *eachPath in imagesArray) {
+            UIImage *eachImg = [UIImage imageWithContentsOfFile:eachPath];
+            [imageMutableArray addObject:eachImg];
+        }
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{

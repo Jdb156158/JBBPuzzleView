@@ -382,12 +382,15 @@
             rectOriginal.origin.y = fabs(superSizeOriginal.height - rectOriginal.origin.y - CGRectGetHeight(rectOriginal));
             [frames addObject:[NSValue valueWithCGRect:rectOriginal]];
             
-            // 获取裁剪区域
+            // 当前视频显示的区域坐标
             CGRect videoRect = item.videoContentView.frame;
             CGRect videoOriginalRect = item.videoVideOriginalRect;
 
+            //原视频像素大小
             CGFloat fixelW = CGImageGetWidth(item.imageFrameView.image.CGImage);
             CGFloat fixelH = CGImageGetHeight(item.imageFrameView.image.CGImage);
+            
+            //当前画布范围大小
             CGFloat w = item.frame.size.width;
             CGFloat h = item.frame.size.height;
             
@@ -411,6 +414,10 @@
                 CGFloat radio = h / fixelH;
                 cropRectW = item.frame.size.width/radio/cropRectScal;
 
+            }
+            
+            if (cropRectY>fixelH) {
+                cropRectY = 0;
             }
 
             CGRect cropRect = CGRectMake(cropRectX, cropRectY, cropRectW, cropRectH);

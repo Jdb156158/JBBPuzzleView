@@ -109,8 +109,8 @@
     size_t width = CVPixelBufferGetWidth(destination);
     size_t height = CVPixelBufferGetHeight(destination);
     NSMutableArray *imageRefArray = [[NSMutableArray alloc] init];
-    NSMutableArray *filterNameArray = [[PuzzleData sharedInstance] filterNameArray];
-    NSMutableArray *videoDurationArray = [[PuzzleData sharedInstance] videoDurationArray];
+//    NSMutableArray *filterNameArray = [[PuzzleData sharedInstance] filterNameArray];
+//    NSMutableArray *videoDurationArray = [[PuzzleData sharedInstance] videoDurationArray];
 
     for (NSUInteger i = 0; i < [videoBufferRefArray count]; ++i)
     {
@@ -129,22 +129,22 @@
 //            }
 //        }
         
-        CGFloat currentVideoTime = [[videoDurationArray objectAtIndex:i] floatValue];
-        if (self.currentTime < currentVideoTime) {// 超过当前视频时长不渲染
-            @autoreleasepool {
-                NSString *filterName = [filterNameArray objectAtIndex:i];
-                CIImage *image = [CIImage imageWithCVPixelBuffer:videoFrame];
-                if (![filterName isEqualToString:@""]) {
-                    CIFilter *ciFilter = [CIFilter filterWithName:filterName withInputParameters:@{kCIInputImageKey: image}];
-                    image = [ciFilter valueForKey:kCIOutputImageKey];
-                } else {
-                    // 加一层淡黄色滤镜
-                    CIImage *filterImage = [CIImage imageWithColor:[CIColor clearColor]];
-                    image = [filterImage imageByCompositingOverImage:image];
-                }
-                [self.context render:image toCVPixelBuffer:videoFrame];
-            }
-        }
+//        CGFloat currentVideoTime = [[videoDurationArray objectAtIndex:i] floatValue];
+//        if (self.currentTime < currentVideoTime) {// 超过当前视频时长不渲染
+//            @autoreleasepool {
+//                NSString *filterName = [filterNameArray objectAtIndex:i];
+//                CIImage *image = [CIImage imageWithCVPixelBuffer:videoFrame];
+//                if (![filterName isEqualToString:@""]) {
+//                    CIFilter *ciFilter = [CIFilter filterWithName:filterName withInputParameters:@{kCIInputImageKey: image}];
+//                    image = [ciFilter valueForKey:kCIOutputImageKey];
+//                } else {
+//                    // 加一层淡黄色滤镜
+//                    CIImage *filterImage = [CIImage imageWithColor:[CIColor clearColor]];
+//                    image = [filterImage imageByCompositingOverImage:image];
+//                }
+//                [self.context render:image toCVPixelBuffer:videoFrame];
+//            }
+//        }
 
         
         CGImageRef imageRef = [self createSourceImageFromBuffer:videoFrame];
